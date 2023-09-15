@@ -18,8 +18,8 @@ namespace TrackerUI
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Khởi tạo kết nối database
-            newTrackerLibrary.GlobalConfig.InitializeConnections(true,true);
-            Application.Run(new CreatePrizeForm());
+            newTrackerLibrary.GlobalConfig.InitializeConnections(newTrackerLibrary.DatabaseType.Sql);
+            Application.Run(new TournamentDashBoardForm());
 
             //Application.Run(new TournamentDashboardForm());
         }

@@ -8,6 +8,7 @@ namespace newTrackerLibrary.Models
 {
     public class TeamModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// Tượng trưng cho danh sách những người trong đội.
         /// </summary>

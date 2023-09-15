@@ -8,6 +8,7 @@ namespace newTrackerLibrary.Models
 {
     public class PersonModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// Tượng trưng cho tên đầu.
         /// </summary>
@@ -24,5 +25,12 @@ namespace newTrackerLibrary.Models
         /// Tượng trưng cho số điện thoại.
         /// </summary>
         public string CellphoneNumber { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return $"{LastName} {FirstName}";
+            }
+        }
     }
 }

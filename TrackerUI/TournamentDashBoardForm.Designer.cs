@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentDashBoardForm));
             this.headerLabel = new System.Windows.Forms.Label();
-            this.loadExistingTournamentDropDow = new System.Windows.Forms.ComboBox();
+            this.loadExistingTournamentDropDown = new System.Windows.Forms.ComboBox();
             this.loadExistingTournamentLabel = new System.Windows.Forms.Label();
             this.loadTournamentButton = new System.Windows.Forms.Button();
             this.createTournamentButton = new System.Windows.Forms.Button();
@@ -47,13 +47,13 @@
             this.headerLabel.TabIndex = 12;
             this.headerLabel.Text = "Bảng điều khiển giải đấu";
             // 
-            // loadExistingTournamentDropDow
+            // loadExistingTournamentDropDown
             // 
-            this.loadExistingTournamentDropDow.FormattingEnabled = true;
-            this.loadExistingTournamentDropDow.Location = new System.Drawing.Point(92, 146);
-            this.loadExistingTournamentDropDow.Name = "loadExistingTournamentDropDow";
-            this.loadExistingTournamentDropDow.Size = new System.Drawing.Size(349, 38);
-            this.loadExistingTournamentDropDow.TabIndex = 19;
+            this.loadExistingTournamentDropDown.FormattingEnabled = true;
+            this.loadExistingTournamentDropDown.Location = new System.Drawing.Point(92, 146);
+            this.loadExistingTournamentDropDown.Name = "loadExistingTournamentDropDown";
+            this.loadExistingTournamentDropDown.Size = new System.Drawing.Size(349, 38);
+            this.loadExistingTournamentDropDown.TabIndex = 19;
             // 
             // loadExistingTournamentLabel
             // 
@@ -80,6 +80,7 @@
             this.loadTournamentButton.TabIndex = 20;
             this.loadTournamentButton.Text = "Chọn giải đấu";
             this.loadTournamentButton.UseVisualStyleBackColor = true;
+            this.loadTournamentButton.Click += new System.EventHandler(this.loadTournamentButton_Click);
             // 
             // createTournamentButton
             // 
@@ -95,6 +96,7 @@
             this.createTournamentButton.TabIndex = 21;
             this.createTournamentButton.Text = "Tạo giải đấu";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // TournamentDashBoardForm
             // 
@@ -104,7 +106,7 @@
             this.ClientSize = new System.Drawing.Size(544, 409);
             this.Controls.Add(this.createTournamentButton);
             this.Controls.Add(this.loadTournamentButton);
-            this.Controls.Add(this.loadExistingTournamentDropDow);
+            this.Controls.Add(this.loadExistingTournamentDropDown);
             this.Controls.Add(this.loadExistingTournamentLabel);
             this.Controls.Add(this.headerLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,7 +122,7 @@
         #endregion
 
         private System.Windows.Forms.Label headerLabel;
-        private System.Windows.Forms.ComboBox loadExistingTournamentDropDow;
+        private System.Windows.Forms.ComboBox loadExistingTournamentDropDown;
         private System.Windows.Forms.Label loadExistingTournamentLabel;
         private System.Windows.Forms.Button loadTournamentButton;
         private System.Windows.Forms.Button createTournamentButton;

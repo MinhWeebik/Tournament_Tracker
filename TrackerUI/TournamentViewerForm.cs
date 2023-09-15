@@ -1,4 +1,5 @@
-﻿using System;
+﻿using newTrackerLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,25 @@ namespace TrackerUI
 {
     public partial class TournamentViewerForm : Form
     {
-        public TournamentViewerForm()
+        private TournamentModel tournament;
+        List<int> rounds = new List<int>();
+        public TournamentViewerForm(TournamentModel tournamentModel)
         {
             InitializeComponent();
+            
+            tournament = tournamentModel;
+
+            LoadFormData();
+        }
+
+        private void LoadFormData()
+        {
+            tournamentName.Text = tournament.TournamentName;
+        }
+
+        private void LoadRound()
+        {
+
         }
     }
 }

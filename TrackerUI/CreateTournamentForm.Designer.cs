@@ -39,7 +39,7 @@
             this.createNewTeamLink = new System.Windows.Forms.LinkLabel();
             this.addTeamButton = new System.Windows.Forms.Button();
             this.createPrizeButton = new System.Windows.Forms.Button();
-            this.tournamentPlayerListBox = new System.Windows.Forms.ListBox();
+            this.tournamentTeamsListBox = new System.Windows.Forms.ListBox();
             this.tournamentPlayerLabel = new System.Windows.Forms.Label();
             this.deleteSelectedTeamButton = new System.Windows.Forms.Button();
             this.deleteSelectedPrizesButton = new System.Windows.Forms.Button();
@@ -124,6 +124,7 @@
             this.createNewTeamLink.TabIndex = 14;
             this.createNewTeamLink.TabStop = true;
             this.createNewTeamLink.Text = "Tạo mới";
+            this.createNewTeamLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.createNewTeamLink_LinkClicked);
             // 
             // addTeamButton
             // 
@@ -139,6 +140,7 @@
             this.addTeamButton.TabIndex = 15;
             this.addTeamButton.Text = "Thêm đội";
             this.addTeamButton.UseVisualStyleBackColor = true;
+            this.addTeamButton.Click += new System.EventHandler(this.addTeamButton_Click);
             // 
             // createPrizeButton
             // 
@@ -154,16 +156,17 @@
             this.createPrizeButton.TabIndex = 16;
             this.createPrizeButton.Text = "Tạo giải thưởng";
             this.createPrizeButton.UseVisualStyleBackColor = true;
+            this.createPrizeButton.Click += new System.EventHandler(this.createPrizeButton_Click);
             // 
-            // tournamentPlayerListBox
+            // tournamentTeamsListBox
             // 
-            this.tournamentPlayerListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tournamentPlayerListBox.FormattingEnabled = true;
-            this.tournamentPlayerListBox.ItemHeight = 30;
-            this.tournamentPlayerListBox.Location = new System.Drawing.Point(389, 125);
-            this.tournamentPlayerListBox.Name = "tournamentPlayerListBox";
-            this.tournamentPlayerListBox.Size = new System.Drawing.Size(345, 152);
-            this.tournamentPlayerListBox.TabIndex = 17;
+            this.tournamentTeamsListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tournamentTeamsListBox.FormattingEnabled = true;
+            this.tournamentTeamsListBox.ItemHeight = 30;
+            this.tournamentTeamsListBox.Location = new System.Drawing.Point(389, 125);
+            this.tournamentTeamsListBox.Name = "tournamentTeamsListBox";
+            this.tournamentTeamsListBox.Size = new System.Drawing.Size(345, 152);
+            this.tournamentTeamsListBox.TabIndex = 17;
             // 
             // tournamentPlayerLabel
             // 
@@ -190,6 +193,7 @@
             this.deleteSelectedTeamButton.TabIndex = 21;
             this.deleteSelectedTeamButton.Text = "Xóa cái được chọn";
             this.deleteSelectedTeamButton.UseVisualStyleBackColor = true;
+            this.deleteSelectedTeamButton.Click += new System.EventHandler(this.deleteSelectedTeamButton_Click);
             // 
             // deleteSelectedPrizesButton
             // 
@@ -205,6 +209,7 @@
             this.deleteSelectedPrizesButton.TabIndex = 24;
             this.deleteSelectedPrizesButton.Text = "Xóa cái được chọn";
             this.deleteSelectedPrizesButton.UseVisualStyleBackColor = true;
+            this.deleteSelectedPrizesButton.Click += new System.EventHandler(this.deleteSelectedPrizesButton_Click);
             // 
             // prizesLabel
             // 
@@ -241,6 +246,7 @@
             this.createTournamentButton.TabIndex = 25;
             this.createTournamentButton.Text = "Tạo giải đấu";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // CreateTournamentForm
             // 
@@ -254,7 +260,7 @@
             this.Controls.Add(this.prizesListBox);
             this.Controls.Add(this.deleteSelectedTeamButton);
             this.Controls.Add(this.tournamentPlayerLabel);
-            this.Controls.Add(this.tournamentPlayerListBox);
+            this.Controls.Add(this.tournamentTeamsListBox);
             this.Controls.Add(this.createPrizeButton);
             this.Controls.Add(this.addTeamButton);
             this.Controls.Add(this.createNewTeamLink);
@@ -287,7 +293,7 @@
         private System.Windows.Forms.LinkLabel createNewTeamLink;
         private System.Windows.Forms.Button addTeamButton;
         private System.Windows.Forms.Button createPrizeButton;
-        private System.Windows.Forms.ListBox tournamentPlayerListBox;
+        private System.Windows.Forms.ListBox tournamentTeamsListBox;
         private System.Windows.Forms.Label tournamentPlayerLabel;
         private System.Windows.Forms.Button deleteSelectedTeamButton;
         private System.Windows.Forms.Button deleteSelectedPrizesButton;

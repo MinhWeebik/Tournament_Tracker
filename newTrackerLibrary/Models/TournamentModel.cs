@@ -8,6 +8,7 @@ namespace newTrackerLibrary.Models
 {
     public class TournamentModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// Tượng trưng cho tên giải đấu.
         /// </summary>
