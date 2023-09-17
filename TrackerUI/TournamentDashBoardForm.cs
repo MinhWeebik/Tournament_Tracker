@@ -18,6 +18,8 @@ namespace TrackerUI
         public TournamentDashBoardForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             WireUp();
         }
 
@@ -38,6 +40,11 @@ namespace TrackerUI
             TournamentModel tm = (TournamentModel)(loadExistingTournamentDropDown.SelectedItem);
             TournamentViewerForm frm = new TournamentViewerForm(tm);
             frm.Show();
+        }
+
+        private void TournamentDashBoardForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

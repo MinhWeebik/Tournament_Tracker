@@ -22,7 +22,9 @@ namespace TrackerUI
         public TournamentViewerForm(TournamentModel tournamentModel)
         {
             InitializeComponent();
-            
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             tournament = tournamentModel;
 
             LoadFormData();
@@ -155,77 +157,112 @@ namespace TrackerUI
 
         private void scoreButton_Click(object sender, EventArgs e)
         {
-            MatchupModel m = (MatchupModel)matchupListBox.SelectedItem;
-            double teamOneScore = 0;
-            double teamTwoScore = 0;
-
-            for (int i = 0; i < m.Entries.Count; i++)
+            string errorMessage = ValidateForm();
+            if(errorMessage.Length == 0)
             {
-                if (i == 0)
+                MatchupModel m = (MatchupModel)matchupListBox.SelectedItem;
+                int teamOneScore = 0;
+                int teamTwoScore = 0;
+
+                for (int i = 0; i < m.Entries.Count; i++)
                 {
-                    if (m.Entries[0].TeamCompeting != null)
+                    if (i == 0)
                     {
-                        bool scoreValid = double.TryParse(teamOneScoreValue.Text, out teamOneScore);
-                        if (scoreValid)
+                        if (m.Entries[0].TeamCompeting != null)
                         {
-                            m.Entries[0].Score = teamOneScore;
+                            bool scoreValid = int.TryParse(teamOneScoreValue.Text, out teamOneScore);
+                            if (scoreValid)
+                            {
+                                m.Entries[0].Score = teamOneScore;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Place holder");
+                                return;
+                            }
                         }
-                        else
+                    }
+                    if (i == 1)
+                    {
+                        if (m.Entries[1].TeamCompeting != null)
                         {
-                            MessageBox.Show("Place holder");
-                            return;
+                            bool scoreValid = int.TryParse(teamTwoScoreValue.Text, out teamTwoScore);
+                            if (scoreValid)
+                            {
+                                m.Entries[1].Score = teamTwoScore;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Place holder");
+                                return;
+                            }
                         }
                     }
                 }
-                if (i == 1)
+                try
                 {
-                    if (m.Entries[1].TeamCompeting != null)
-                    {
-                        bool scoreValid = double.TryParse(teamTwoScoreValue.Text, out teamTwoScore);
-                        if (scoreValid)
-                        {
-                            m.Entries[1].Score = teamTwoScore;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Place holder");
-                            return;
-                        }
-                    }
+                    TournamentLogic.UpdateTournamentResult(tournament);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ứng dụng bị lỗi sau: {ex.Message}");
+                    return;
+                }
+                LoadMatchups();
             }
+            
+        }
 
-            if(teamOneScore > teamTwoScore)
+        private string ValidateForm()
+        {
+            teamOneScoreLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            teamTwoScoreLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            errorMessage.Visible = false;
+            string output = "";
+            bool teamOneScoreValid = int.TryParse(teamOneScoreValue.Text, out int teamOneScoreOutput);
+            bool teamTwoScoreValid = int.TryParse(teamTwoScoreValue.Text, out int teamTwoScoreOutput);
+            if (!teamOneScoreValid && !teamTwoScoreValid)
             {
-                m.Winner = m.Entries[0].TeamCompeting;
-            }
-            else if (teamTwoScore > teamOneScore) 
-            {
-                m.Winner = m.Entries[1].TeamCompeting;
+                output = "Giá trị của tỉ số cả hai đội không phải số.";
+                errorMessage.Text = output;
+                errorMessage.Visible = true;
+                teamOneScoreLabel.ForeColor = Color.Red;
+                teamTwoScoreLabel.ForeColor = Color.Red;
             }
             else
             {
-                MessageBox.Show("Khong xu ly tran hoa");
-            }
-            foreach(List<MatchupModel> round in tournament.Rounds)
-            {
-                foreach(MatchupModel rm  in round)
+                if (!teamOneScoreValid)
                 {
-                    foreach(MatchupEntryModel me in rm.Entries)
-                    {
-                        if (me.ParentMatchup != null)
-                        {
-                            if (me.ParentMatchup.Id == m.Id)
-                            {
-                                me.TeamCompeting = m.Winner;
-                                GlobalConfig.Connection.updateMatchup(rm);
-                            } 
-                        }
-                    }
+                    output = "Giá trị của tỉ số đội một không phải số.";
+                    errorMessage.Text = output;
+                    errorMessage.Visible = true;
+                    teamOneScoreLabel.ForeColor = Color.Red;
+                }
+                else if (!teamTwoScoreValid)
+                {
+                    output = "Giá trị của tỉ số đội hai không phải số.";
+                    errorMessage.Text = output;
+                    errorMessage.Visible = true;
+                    teamTwoScoreLabel.ForeColor = Color.Red;
+                }
+                else if (teamOneScoreOutput == 0 && teamTwoScoreOutput == 0)
+                {
+                    output = "Chưa đặt tỉ số cho cả 2 đội.";
+                    errorMessage.Text = output;
+                    errorMessage.Visible = true;
+                    teamOneScoreLabel.ForeColor = Color.Red;
+                    teamTwoScoreLabel.ForeColor = Color.Red;
+                }
+                else if (teamOneScoreOutput == teamTwoScoreOutput)
+                {
+                    output = "Không cho phép hòa trong giải đấu này.";
+                    errorMessage.Text = output;
+                    errorMessage.Visible = true;
+                    teamOneScoreLabel.ForeColor = Color.Red;
+                    teamTwoScoreLabel.ForeColor = Color.Red;
                 }
             }
-            LoadMatchups();
-            GlobalConfig.Connection.updateMatchup(m);
+            return output;
         }
     }
 }

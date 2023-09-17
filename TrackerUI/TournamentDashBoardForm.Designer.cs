@@ -114,6 +114,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "TournamentDashBoardForm";
             this.Text = "Bảng điều khiển giải đấu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TournamentDashBoardForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

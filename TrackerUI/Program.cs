@@ -1,4 +1,5 @@
-﻿using System;
+﻿using newTrackerLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,10 +19,8 @@ namespace TrackerUI
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Khởi tạo kết nối database
-            newTrackerLibrary.GlobalConfig.InitializeConnections(newTrackerLibrary.DatabaseType.Sql);
-            Application.Run(new TournamentDashBoardForm());
-
-            //Application.Run(new TournamentDashboardForm());
+            Application.Run(new SelectDatabase());
+            
         }
     }
 }

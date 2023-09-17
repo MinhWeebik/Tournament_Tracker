@@ -9,9 +9,9 @@ namespace newTrackerLibrary.DataAccess
 {
     public interface IDataConnection
     {
-        PrizeModel createPrize(PrizeModel model);
-        PersonModel createPerson(PersonModel model);
-        TeamModel createTeam(TeamModel model);
+        void createPrize(PrizeModel model);
+        void createPerson(PersonModel model);
+        void createTeam(TeamModel model);
         void createTournament(TournamentModel model);
         void updateMatchup(MatchupModel model);
         List<TeamModel> getTeam_All();

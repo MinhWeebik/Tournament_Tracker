@@ -13,7 +13,7 @@ namespace newTrackerLibrary.DataAccess
     public class SQLConnector : IDataConnection
     {
         private const string db = "Tournament";
-        public PersonModel createPerson(PersonModel model)
+        public void createPerson(PersonModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -25,10 +25,9 @@ namespace newTrackerLibrary.DataAccess
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spPeople_Insert", p, commandType: CommandType.StoredProcedure);
                 model.Id = p.Get<int>("@id");
-                return model;
             }
         }
-        public PrizeModel createPrize(PrizeModel model)
+        public void createPrize(PrizeModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -40,11 +39,10 @@ namespace newTrackerLibrary.DataAccess
                 p.Add("@id",0,dbType: DbType.Int32, direction: ParameterDirection.Output);
                 connection.Execute("dbo.spPrizes_Insert", p, commandType: CommandType.StoredProcedure);
                 model.Id = p.Get<int>("@id");
-                return model;
             }
         }
 
-        public TeamModel createTeam(TeamModel model)
+        public void createTeam(TeamModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -61,8 +59,6 @@ namespace newTrackerLibrary.DataAccess
                     p.Add("@PersonId", tm.Id);
                     connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
                 }
-
-                return model;
             }
         }
 
@@ -74,6 +70,7 @@ namespace newTrackerLibrary.DataAccess
                 SaveTournamentPrizes(connection,model);
                 SaveTournamentEntries(connection, model);
                 SaveTournamentRounds(connection, model);
+                TournamentLogic.UpdateTournamentResult(model);
             }
         }
 

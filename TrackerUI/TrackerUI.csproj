@@ -66,6 +66,12 @@
     </Compile>
     <Compile Include="IPrizeRequester.cs" />
     <Compile Include="ITeamRequester.cs" />
+    <Compile Include="SelectDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectDatabase.Designer.cs">
+      <DependentUpon>SelectDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="TournamentDashBoardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectDatabase.resx">
+      <DependentUpon>SelectDatabase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TournamentDashBoardForm.resx">
       <DependentUpon>TournamentDashBoardForm.cs</DependentUpon>
     </EmbeddedResource>

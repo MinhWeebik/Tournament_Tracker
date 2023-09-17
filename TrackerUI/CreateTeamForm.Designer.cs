@@ -48,6 +48,7 @@
             this.teamMembersListBox = new System.Windows.Forms.ListBox();
             this.deleteSelectedMemberButton = new System.Windows.Forms.Button();
             this.createTeamButton = new System.Windows.Forms.Button();
+            this.errorMessageLabel = new System.Windows.Forms.Label();
             this.addNewNumberGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             // 
             this.teamNameValue.Location = new System.Drawing.Point(32, 127);
             this.teamNameValue.Name = "teamNameValue";
-            this.teamNameValue.Size = new System.Drawing.Size(349, 42);
+            this.teamNameValue.Size = new System.Drawing.Size(349, 35);
             this.teamNameValue.TabIndex = 12;
             // 
             // teamNameLabel
@@ -65,7 +66,7 @@
             this.teamNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.teamNameLabel.Location = new System.Drawing.Point(25, 86);
             this.teamNameLabel.Name = "teamNameLabel";
-            this.teamNameLabel.Size = new System.Drawing.Size(133, 47);
+            this.teamNameLabel.Size = new System.Drawing.Size(107, 38);
             this.teamNameLabel.TabIndex = 11;
             this.teamNameLabel.Text = "Tên đội";
             // 
@@ -76,7 +77,7 @@
             this.headerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.headerLabel.Location = new System.Drawing.Point(23, 26);
             this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(175, 62);
+            this.headerLabel.Size = new System.Drawing.Size(140, 50);
             this.headerLabel.TabIndex = 10;
             this.headerLabel.Text = "Tạo đội";
             // 
@@ -101,7 +102,7 @@
             this.selectTeamMemberDropDown.FormattingEnabled = true;
             this.selectTeamMemberDropDown.Location = new System.Drawing.Point(32, 222);
             this.selectTeamMemberDropDown.Name = "selectTeamMemberDropDown";
-            this.selectTeamMemberDropDown.Size = new System.Drawing.Size(349, 44);
+            this.selectTeamMemberDropDown.Size = new System.Drawing.Size(349, 38);
             this.selectTeamMemberDropDown.TabIndex = 17;
             // 
             // selectTeamMemberLabel
@@ -111,7 +112,7 @@
             this.selectTeamMemberLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.selectTeamMemberLabel.Location = new System.Drawing.Point(25, 177);
             this.selectTeamMemberLabel.Name = "selectTeamMemberLabel";
-            this.selectTeamMemberLabel.Size = new System.Drawing.Size(276, 47);
+            this.selectTeamMemberLabel.Size = new System.Drawing.Size(220, 38);
             this.selectTeamMemberLabel.TabIndex = 16;
             this.selectTeamMemberLabel.Text = "Chọn thành viên";
             // 
@@ -155,7 +156,7 @@
             // 
             this.cellphoneValue.Location = new System.Drawing.Point(132, 229);
             this.cellphoneValue.Name = "cellphoneValue";
-            this.cellphoneValue.Size = new System.Drawing.Size(187, 52);
+            this.cellphoneValue.Size = new System.Drawing.Size(187, 43);
             this.cellphoneValue.TabIndex = 16;
             // 
             // cellphoneLabel
@@ -165,7 +166,7 @@
             this.cellphoneLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.cellphoneLabel.Location = new System.Drawing.Point(12, 226);
             this.cellphoneLabel.Name = "cellphoneLabel";
-            this.cellphoneLabel.Size = new System.Drawing.Size(82, 47);
+            this.cellphoneLabel.Size = new System.Drawing.Size(67, 38);
             this.cellphoneLabel.TabIndex = 15;
             this.cellphoneLabel.Text = "SĐT";
             // 
@@ -173,7 +174,7 @@
             // 
             this.emailValue.Location = new System.Drawing.Point(132, 169);
             this.emailValue.Name = "emailValue";
-            this.emailValue.Size = new System.Drawing.Size(187, 52);
+            this.emailValue.Size = new System.Drawing.Size(187, 43);
             this.emailValue.TabIndex = 14;
             // 
             // emailLabel
@@ -183,7 +184,7 @@
             this.emailLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.emailLabel.Location = new System.Drawing.Point(12, 166);
             this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(102, 47);
+            this.emailLabel.Size = new System.Drawing.Size(83, 38);
             this.emailLabel.TabIndex = 13;
             this.emailLabel.Text = "Email";
             // 
@@ -191,7 +192,7 @@
             // 
             this.lastNameValue.Location = new System.Drawing.Point(132, 109);
             this.lastNameValue.Name = "lastNameValue";
-            this.lastNameValue.Size = new System.Drawing.Size(187, 52);
+            this.lastNameValue.Size = new System.Drawing.Size(187, 43);
             this.lastNameValue.TabIndex = 12;
             // 
             // lastNameLabel
@@ -201,7 +202,7 @@
             this.lastNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.lastNameLabel.Location = new System.Drawing.Point(12, 106);
             this.lastNameLabel.Name = "lastNameLabel";
-            this.lastNameLabel.Size = new System.Drawing.Size(66, 47);
+            this.lastNameLabel.Size = new System.Drawing.Size(53, 38);
             this.lastNameLabel.TabIndex = 11;
             this.lastNameLabel.Text = "Họ";
             // 
@@ -209,7 +210,7 @@
             // 
             this.firstNameValue.Location = new System.Drawing.Point(132, 49);
             this.firstNameValue.Name = "firstNameValue";
-            this.firstNameValue.Size = new System.Drawing.Size(187, 52);
+            this.firstNameValue.Size = new System.Drawing.Size(187, 43);
             this.firstNameValue.TabIndex = 10;
             // 
             // firstNameLabel
@@ -219,7 +220,7 @@
             this.firstNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.firstNameLabel.Location = new System.Drawing.Point(12, 46);
             this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(142, 47);
+            this.firstNameLabel.Size = new System.Drawing.Size(114, 38);
             this.firstNameLabel.TabIndex = 9;
             this.firstNameLabel.Text = "Tên đầu";
             // 
@@ -227,7 +228,7 @@
             // 
             this.teamMembersListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.teamMembersListBox.FormattingEnabled = true;
-            this.teamMembersListBox.ItemHeight = 36;
+            this.teamMembersListBox.ItemHeight = 30;
             this.teamMembersListBox.Location = new System.Drawing.Point(438, 127);
             this.teamMembersListBox.Name = "teamMembersListBox";
             this.teamMembersListBox.Size = new System.Drawing.Size(307, 542);
@@ -265,12 +266,25 @@
             this.createTeamButton.UseVisualStyleBackColor = true;
             this.createTeamButton.Click += new System.EventHandler(this.createTeamButton_Click);
             // 
+            // errorMessageLabel
+            // 
+            this.errorMessageLabel.AutoSize = true;
+            this.errorMessageLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorMessageLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorMessageLabel.Location = new System.Drawing.Point(434, 672);
+            this.errorMessageLabel.Name = "errorMessageLabel";
+            this.errorMessageLabel.Size = new System.Drawing.Size(248, 21);
+            this.errorMessageLabel.TabIndex = 27;
+            this.errorMessageLabel.Text = "Chưa thêm thành viên nào vào đội";
+            this.errorMessageLabel.Visible = false;
+            // 
             // CreateTeamForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 36F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(956, 814);
+            this.Controls.Add(this.errorMessageLabel);
             this.Controls.Add(this.createTeamButton);
             this.Controls.Add(this.deleteSelectedMemberButton);
             this.Controls.Add(this.teamMembersListBox);
@@ -314,5 +328,6 @@
         private System.Windows.Forms.ListBox teamMembersListBox;
         private System.Windows.Forms.Button deleteSelectedMemberButton;
         private System.Windows.Forms.Button createTeamButton;
+        private System.Windows.Forms.Label errorMessageLabel;
     }
 }

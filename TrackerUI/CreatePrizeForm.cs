@@ -19,6 +19,8 @@ namespace TrackerUI
         public CreatePrizeForm(IPrizeRequester caller)
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             callingForm = caller;
         }
 
@@ -40,7 +42,6 @@ namespace TrackerUI
             placeNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
             prizeAmountLabel.ForeColor = Color.FromArgb(51, 153, 255);
             prizePercentageLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            errorLabel.Visible = false;
             bool output = true;
             int placeNumber = 0;
             bool placeNumberValidNumber = int.TryParse(placeNumberValue.Text, out placeNumber);
@@ -83,10 +84,6 @@ namespace TrackerUI
             {
                 output = false;
                 prizePercentageLabel.ForeColor = Color.Red;
-            }
-            if(!output)
-            {
-                errorLabel.Visible = true;
             }
             return output;
         }

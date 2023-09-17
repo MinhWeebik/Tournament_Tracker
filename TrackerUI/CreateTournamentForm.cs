@@ -20,6 +20,8 @@ namespace TrackerUI
         public CreateTournamentForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             WireUpList();
         }
 
@@ -94,30 +96,58 @@ namespace TrackerUI
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-            decimal fee = 0;
-            bool feeAcceptable = decimal.TryParse(entryFeeValue.Text, out fee);
-            if (!feeAcceptable)
+            if (ValidateForm())
             {
-                MessageBox.Show("Error");
-                return;
+                //Tạo tournament model
+                TournamentModel tm = new TournamentModel();
+                tm.TournamentName = tournamentNameValue.Text;
+                tm.EntryFee = decimal.Parse(entryFeeValue.Text);
+                tm.Prizes = selectedPrizes;
+                tm.EnteredTeams = selectedTeams;
+
+                //Tạo trận đấu
+                TournamentLogic.CreateRounds(tm);
+
+                //Tạo tournament entries
+                //Tạo prize entries
+                //Tạo team entries
+                GlobalConfig.Connection.createTournament(tm);
+
+                TournamentViewerForm frm = new TournamentViewerForm(tm);
+                frm.Show();
+                this.Close(); 
             }
+        }
 
-            //Tạo tournament model
-            TournamentModel tm = new TournamentModel();
-            tm.TournamentName = tournamentNameValue.Text;
-            tm.EntryFee = fee;
-            tm.Prizes = selectedPrizes;
-            tm.EnteredTeams = selectedTeams;
-
-            //Tạo trận đấu
-            TournamentLogic.CreateRounds(tm);
-
-            //Tạo tournament entries
-            //Tạo prize entries
-            //Tạo team entries
-            GlobalConfig.Connection.createTournament(tm);
-            
-
+        private bool ValidateForm()
+        {
+            noTeamsErrorLabel.Visible  = false;
+            noPrizesErrorLabel.Visible = false;
+            tournamentNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            entryFeeLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            bool output = true;
+            if(tournamentNameValue.Text.Length == 0)
+            {
+                output = false;
+                tournamentNameLabel.ForeColor = Color.Red;
+            }
+            bool entryFeeValidate = decimal.TryParse(entryFeeValue.Text, out decimal fee);
+            if(!entryFeeValidate || int.Parse(entryFeeValue.Text) == 0)
+            {
+                output = false;
+                entryFeeLabel.ForeColor = Color.Red;
+            }
+            if(tournamentTeamsListBox.Items.Count == 0) 
+            {
+                output = false;
+                noTeamsErrorLabel.Visible = true;
+            }
+            if(prizesListBox.Items.Count == 0)
+            {
+                output = false;
+                noPrizesErrorLabel.Visible = true;
+            }
+            return output;
         }
     }
 }

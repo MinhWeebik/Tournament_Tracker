@@ -22,6 +22,73 @@ namespace newTrackerLibrary
             CreateOtherRounds(model, rounds);
         }
 
+        public static void UpdateTournamentResult(TournamentModel model)
+        {
+            List<MatchupModel> toScore = new List<MatchupModel>();
+            foreach (List<MatchupModel> round in model.Rounds)
+            {
+                foreach (MatchupModel rm in round)
+                {
+                    if(rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
+                    {
+                        toScore.Add(rm);
+                    }
+                }
+            }
+
+            MarkWinnerInMatchups(toScore);
+            AdvanceWinners(toScore,model);
+            toScore.ForEach(x => GlobalConfig.Connection.updateMatchup(x));
+        }
+
+        private static void AdvanceWinners(List<MatchupModel> models,TournamentModel tournament)
+        {
+            foreach (MatchupModel m in models)
+            {
+                foreach (List<MatchupModel> round in tournament.Rounds)
+                {
+                    foreach (MatchupModel rm in round)
+                    {
+                        foreach (MatchupEntryModel me in rm.Entries)
+                        {
+                            if (me.ParentMatchup != null)
+                            {
+                                if (me.ParentMatchup.Id == m.Id)
+                                {
+                                    me.TeamCompeting = m.Winner;
+                                    GlobalConfig.Connection.updateMatchup(rm);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void MarkWinnerInMatchups(List<MatchupModel> models)
+        {
+            foreach(MatchupModel m in models)
+            {
+                if(m.Entries.Count ==1)
+                {
+                    m.Winner = m.Entries[0].TeamCompeting;
+                    continue;
+                }
+                if (m.Entries[0].Score > m.Entries[1].Score)
+                {
+                    m.Winner = m.Entries[0].TeamCompeting;
+                }
+                else if(m.Entries[0].Score < m.Entries[1].Score)
+                {
+                    m.Winner = m.Entries[1].TeamCompeting;
+                }
+                else
+                {
+                    throw new Exception("Không cho phép hòa trong ứng dụng này");
+                }
+            }
+        }
+
         private static void CreateOtherRounds(TournamentModel model,int rounds)
         {
             int round = 2;

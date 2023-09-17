@@ -20,18 +20,10 @@ namespace TrackerUI
         public CreateTeamForm(ITeamRequester caller)
         {
             InitializeComponent();
-            //CreateSampleData();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             callingForm = caller;
             WireUpList();
-        }
-
-        private void CreateSampleData()
-        {
-            availableTeamMembers.Add(new PersonModel { FirstName = "Sơn", LastName = "Nguyễn Công"});
-            availableTeamMembers.Add(new PersonModel { FirstName = "Dương", LastName = "Nguyễn Duy" });
-
-            selectedTeamMembers.Add(new PersonModel { FirstName = "A", LastName = "Nguyễn Công" });
-            selectedTeamMembers.Add(new PersonModel { FirstName = "B", LastName = "Nguyễn Công" });
         }
 
         private void WireUpList()
@@ -54,7 +46,7 @@ namespace TrackerUI
                 p.LastName = lastNameValue.Text;
                 p.EmailAddress = emailValue.Text;
                 p.CellphoneNumber = cellphoneValue.Text;
-                p = GlobalConfig.Connection.createPerson(p);
+                GlobalConfig.Connection.createPerson(p);
                 selectedTeamMembers.Add(p);
                 WireUpList();
                 firstNameValue.Text = "";
@@ -94,6 +86,23 @@ namespace TrackerUI
             return output;
         }
 
+        private bool ValidateTeam()
+        {
+            teamNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            errorMessageLabel.Visible = false;
+            bool output = true;
+            if(teamNameValue.Text.Length == 0 )
+            {
+                output = false;
+                teamNameLabel.ForeColor = Color.Red;
+            }
+            if(teamMembersListBox.Items.Count == 0 )
+            {
+                output = false;
+                errorMessageLabel.Visible = true;
+            }
+            return output;
+        }
 
         private void addMemberButton_Click(object sender, EventArgs e)
         {
@@ -119,12 +128,15 @@ namespace TrackerUI
 
         private void createTeamButton_Click(object sender, EventArgs e)
         {
-            TeamModel t = new TeamModel();
-            t.TeamName = teamNameValue.Text;
-            t.TeamMembers = selectedTeamMembers;
-            GlobalConfig.Connection.createTeam(t);
-            callingForm.teamComplete(t);
-            this.Close();
+            if (ValidateTeam())
+            {
+                TeamModel t = new TeamModel();
+                t.TeamName = teamNameValue.Text;
+                t.TeamMembers = selectedTeamMembers;
+                GlobalConfig.Connection.createTeam(t);
+                callingForm.teamComplete(t);
+                this.Close(); 
+            }
         }
     }
 }
