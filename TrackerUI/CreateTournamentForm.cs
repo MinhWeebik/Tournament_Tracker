@@ -51,8 +51,16 @@ namespace TrackerUI
 
         private void createPrizeButton_Click(object sender, EventArgs e)
         {
-            CreatePrizeForm frm = new CreatePrizeForm(this);
-            frm.Show();
+            prizeErrorLabel.Visible= false;
+            if (prizesListBox.Items.Count < 2)
+            {
+                CreatePrizeForm frm = new CreatePrizeForm(this);
+                frm.Show(); 
+            }
+            else
+            {
+                prizeErrorLabel.Visible = true;
+            }
         }
 
         public void PrizeComplete(PrizeModel model)
@@ -113,6 +121,8 @@ namespace TrackerUI
                 //Tạo team entries
                 GlobalConfig.Connection.createTournament(tm);
 
+                tm.AlertUserToNewRound();
+
                 TournamentViewerForm frm = new TournamentViewerForm(tm);
                 frm.Show();
                 this.Close(); 
@@ -122,7 +132,7 @@ namespace TrackerUI
         private bool ValidateForm()
         {
             noTeamsErrorLabel.Visible  = false;
-            noPrizesErrorLabel.Visible = false;
+            prizeErrorLabel.Visible = false;
             tournamentNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
             entryFeeLabel.ForeColor = Color.FromArgb(51, 153, 255);
             bool output = true;
@@ -141,11 +151,6 @@ namespace TrackerUI
             {
                 output = false;
                 noTeamsErrorLabel.Visible = true;
-            }
-            if(prizesListBox.Items.Count == 0)
-            {
-                output = false;
-                noPrizesErrorLabel.Visible = true;
             }
             return output;
         }

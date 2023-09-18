@@ -19,7 +19,7 @@ namespace TrackerUI
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Khởi tạo kết nối database
-            Application.Run(new SelectDatabase());
+            Application.Run(new SelectDatabaseForm());
             
         }
     }

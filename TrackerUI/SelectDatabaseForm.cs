@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace TrackerUI
 {
-    public partial class SelectDatabase : Form
+    public partial class SelectDatabaseForm : Form
     {
         List<DatabaseType> Databases = new List<DatabaseType>();
-        public SelectDatabase()
+        public SelectDatabaseForm()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;

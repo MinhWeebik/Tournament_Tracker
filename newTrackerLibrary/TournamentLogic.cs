@@ -24,6 +24,7 @@ namespace newTrackerLibrary
 
         public static void UpdateTournamentResult(TournamentModel model)
         {
+            int startingRound = model.CheckCurrentRound();
             List<MatchupModel> toScore = new List<MatchupModel>();
             foreach (List<MatchupModel> round in model.Rounds)
             {
@@ -39,6 +40,139 @@ namespace newTrackerLibrary
             MarkWinnerInMatchups(toScore);
             AdvanceWinners(toScore,model);
             toScore.ForEach(x => GlobalConfig.Connection.updateMatchup(x));
+            int endingRound = model.CheckCurrentRound();
+            if(endingRound > startingRound)
+            {
+                model.AlertUserToNewRound();
+            }
+        }
+
+        public static void AlertUserToNewRound(this TournamentModel model)
+        {
+            int currentRoundNumber = model.CheckCurrentRound();
+            List<MatchupModel> currentRound = model.Rounds.Where(x => x.First().MatchupRound == currentRoundNumber).First();
+            foreach(MatchupModel matchup in currentRound)
+            {
+                foreach(MatchupEntryModel me in matchup.Entries)
+                {
+                    foreach(PersonModel p in me.TeamCompeting.TeamMembers)
+                    {
+                        AlertPersonToNewRound(p, me.TeamCompeting.TeamName,matchup.Entries.Where(x => x.TeamCompeting != me.TeamCompeting).FirstOrDefault());
+                    }
+                }
+            }
+        }
+
+        private static void AlertPersonToNewRound(PersonModel p, string teamName, MatchupEntryModel competitor)
+        {
+            string to = "";
+            string subject = "";
+            StringBuilder body = new StringBuilder();
+            if(competitor != null)
+            {
+                subject = $"Bạn có một trận đấu mới với {competitor.TeamCompeting.TeamName}";
+                body.AppendLine("<h1>Bạn có một trận đấu mới</h1>");
+                body.Append("<strong>Đối thủ: </strong>");
+                body.Append(competitor.TeamCompeting.TeamName);
+                body.AppendLine();
+                body.AppendLine();
+                body.AppendLine("Chúc vui vẻ");
+                body.AppendLine("~Tournament Tracker");
+               
+            }
+            else
+            {
+                subject = "Bạn được qua vòng này";
+                body.AppendLine("Chúc mừng bạn được qua vòng này");
+                body.AppendLine("~Tournament Tracker");
+            }
+            to = p.EmailAddress;
+            EmailLogic.sendEmail(to, subject, body.ToString());
+        }
+
+        public static int CheckCurrentRound(this TournamentModel model)
+        {
+            int output = 1;
+            foreach(List<MatchupModel> round in model.Rounds)
+            {
+                if(round.All(x => x.Winner!= null))
+                {
+                    output += 1;
+                }
+                else
+                {
+                    return output;
+                }
+            }
+            CompleteTournament(model);
+            return output - 1;
+        }
+
+        private static void CompleteTournament(TournamentModel model)
+        {
+            GlobalConfig.Connection.completeTouranment(model);
+            TeamModel winners = model.Rounds.Last().First().Winner;
+            TeamModel runnerUp = model.Rounds.Last().First().Entries.Where(x => x.TeamCompeting != winners).First().TeamCompeting;
+
+            decimal winnerPrize = 0;
+            decimal runnerUpPrize = 0;
+
+            if(model.Prizes.Count > 0)
+            {
+                decimal totalIncome = model.EnteredTeams.Count * model.EntryFee;
+
+                PrizeModel firstPlacePrize = model.Prizes.Where(x => x.PlaceNumber == 1).FirstOrDefault();
+                PrizeModel secondPlacePrize = model.Prizes.Where(x => x.PlaceNumber == 2).FirstOrDefault();
+                if (firstPlacePrize != null)
+                {
+                    winnerPrize = firstPlacePrize.CalculatePrizePayout(totalIncome);
+                }
+                if(secondPlacePrize != null)
+                {
+                    runnerUpPrize = secondPlacePrize.CalculatePrizePayout(totalIncome);
+                }
+            }
+            string subject = "";
+            StringBuilder body = new StringBuilder();
+
+            subject = $"Trong {model.TournamentName}, {winners.TeamName} là đội thắng cuộc!";
+            body.AppendLine("<h1>Đã có đội chiền thắng!</h1>");
+            body.AppendLine("<p>Chúc mừng đội thắng cuộc và cảm ơn mọi người đã tham gia.</p>");
+            body.AppendLine("<br/>");
+            if(winnerPrize > 0)
+            {
+                body.AppendLine($"<p>{winners.TeamName} sẽ nhận được VND{winnerPrize}</p>"); 
+            }
+            if (runnerUpPrize > 0)
+            {
+                body.AppendLine($"<p>{runnerUp.TeamName} sẽ nhận được VND{runnerUpPrize}</p>");
+            }
+            body.AppendLine("<p>Cảm ơn mọi người vì một giải đấu tuyệt vời!</p>");
+            body.AppendLine("~Tournament Tracker");
+            List<string> bcc = new List<string>();
+            foreach (TeamModel t in model.EnteredTeams)
+            {
+                foreach(PersonModel p in t.TeamMembers)
+                {
+                    bcc.Add(p.EmailAddress);
+                }
+            }
+            EmailLogic.sendEmail(new List<string>(),bcc, subject, body.ToString());
+            model.CompleteTournament();
+        }
+
+        private static decimal CalculatePrizePayout(this PrizeModel prize, decimal totalIncome)
+        {
+            decimal output = 0;
+            if(prize.PrizeAmount > 0)
+            {
+                output = prize.PrizeAmount;
+            }
+            else
+            {
+                output = Decimal.Multiply(totalIncome,Convert.ToDecimal(prize.PrizePercentage / 100));
+            }
+            return output;
         }
 
         private static void AdvanceWinners(List<MatchupModel> models,TournamentModel tournament)

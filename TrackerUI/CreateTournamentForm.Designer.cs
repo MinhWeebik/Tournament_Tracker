@@ -47,7 +47,7 @@
             this.prizesListBox = new System.Windows.Forms.ListBox();
             this.createTournamentButton = new System.Windows.Forms.Button();
             this.noTeamsErrorLabel = new System.Windows.Forms.Label();
-            this.noPrizesErrorLabel = new System.Windows.Forms.Label();
+            this.prizeErrorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -136,7 +136,7 @@
             this.addTeamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addTeamButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.addTeamButton.Location = new System.Drawing.Point(76, 350);
+            this.addTeamButton.Location = new System.Drawing.Point(76, 353);
             this.addTeamButton.Name = "addTeamButton";
             this.addTeamButton.Size = new System.Drawing.Size(210, 45);
             this.addTeamButton.TabIndex = 15;
@@ -262,17 +262,17 @@
             this.noTeamsErrorLabel.Text = "Chưa chọn đội nào";
             this.noTeamsErrorLabel.Visible = false;
             // 
-            // noPrizesErrorLabel
+            // prizeErrorLabel
             // 
-            this.noPrizesErrorLabel.AutoSize = true;
-            this.noPrizesErrorLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noPrizesErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.noPrizesErrorLabel.Location = new System.Drawing.Point(538, 485);
-            this.noPrizesErrorLabel.Name = "noPrizesErrorLabel";
-            this.noPrizesErrorLabel.Size = new System.Drawing.Size(196, 21);
-            this.noPrizesErrorLabel.TabIndex = 27;
-            this.noPrizesErrorLabel.Text = "Chưa tạo phần thưởng nào";
-            this.noPrizesErrorLabel.Visible = false;
+            this.prizeErrorLabel.AutoSize = true;
+            this.prizeErrorLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prizeErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.prizeErrorLabel.Location = new System.Drawing.Point(486, 485);
+            this.prizeErrorLabel.Name = "prizeErrorLabel";
+            this.prizeErrorLabel.Size = new System.Drawing.Size(248, 21);
+            this.prizeErrorLabel.TabIndex = 27;
+            this.prizeErrorLabel.Text = "Chỉ được tạo tối đa 2 phần thưởng";
+            this.prizeErrorLabel.Visible = false;
             // 
             // CreateTournamentForm
             // 
@@ -280,7 +280,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(898, 628);
-            this.Controls.Add(this.noPrizesErrorLabel);
+            this.Controls.Add(this.prizeErrorLabel);
             this.Controls.Add(this.noTeamsErrorLabel);
             this.Controls.Add(this.createTournamentButton);
             this.Controls.Add(this.deleteSelectedPrizesButton);
@@ -329,6 +329,6 @@
         private System.Windows.Forms.ListBox prizesListBox;
         private System.Windows.Forms.Button createTournamentButton;
         private System.Windows.Forms.Label noTeamsErrorLabel;
-        private System.Windows.Forms.Label noPrizesErrorLabel;
+        private System.Windows.Forms.Label prizeErrorLabel;
     }
 }

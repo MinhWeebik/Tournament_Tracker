@@ -8,6 +8,7 @@ namespace newTrackerLibrary.Models
 {
     public class TournamentModel
     {
+        public event EventHandler<DateTime> OnTournamentComplete;
         public int Id { get; set; }
         /// <summary>
         /// Tượng trưng cho tên giải đấu.
@@ -29,5 +30,10 @@ namespace newTrackerLibrary.Models
         /// Tượng trưng cho danh sách các vòng của trận đấu.
         /// </summary>
         public List<List<MatchupModel>> Rounds { get; set; } = new List<List<MatchupModel>>();
+
+        public void CompleteTournament()
+        {
+            OnTournamentComplete?.Invoke(this, DateTime.Now);
+        }
     }
 }
