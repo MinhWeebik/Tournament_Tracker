@@ -143,9 +143,17 @@ namespace newTrackerLibrary
             {
                 body.AppendLine($"<p>{winners.TeamName} sẽ nhận được VND{winnerPrize}</p>"); 
             }
+            else
+            {
+                body.AppendLine($"<p>{winners.TeamName} là đội chiến thắng</p>");
+            }
             if (runnerUpPrize > 0)
             {
                 body.AppendLine($"<p>{runnerUp.TeamName} sẽ nhận được VND{runnerUpPrize}</p>");
+            }
+            else
+            {
+                body.AppendLine($"<p>{runnerUp.TeamName} là đội về nhì</p>");
             }
             body.AppendLine("<p>Cảm ơn mọi người vì một giải đấu tuyệt vời!</p>");
             body.AppendLine("~Tournament Tracker");

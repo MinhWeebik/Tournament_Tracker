@@ -17,11 +17,13 @@ namespace TrackerUI
         List<TeamModel> availableTeams = GlobalConfig.Connection.getTeam_All();
         List<TeamModel> selectedTeams = new List<TeamModel>();
         List<PrizeModel> selectedPrizes = new List<PrizeModel>();
-        public CreateTournamentForm()
+        TournamentDashBoardForm formCaller;
+        public CreateTournamentForm(TournamentDashBoardForm caller)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            formCaller = caller;
             WireUpList();
         }
 
@@ -123,8 +125,9 @@ namespace TrackerUI
 
                 tm.AlertUserToNewRound();
 
-                TournamentViewerForm frm = new TournamentViewerForm(tm);
+                TournamentViewerForm frm = new TournamentViewerForm(tm,formCaller);
                 frm.Show();
+                formCaller.ReWireUp();
                 this.Close(); 
             }
         }
@@ -150,6 +153,13 @@ namespace TrackerUI
             if(tournamentTeamsListBox.Items.Count == 0) 
             {
                 output = false;
+                noTeamsErrorLabel.Text = "Chưa chọn đội nào";
+                noTeamsErrorLabel.Visible = true;
+            }
+            if(tournamentTeamsListBox.Items.Count == 1)
+            {
+                output = false;
+                noTeamsErrorLabel.Text = "Cần tối thiểu 2 đội";
                 noTeamsErrorLabel.Visible = true;
             }
             return output;

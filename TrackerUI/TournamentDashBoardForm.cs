@@ -25,7 +25,7 @@ namespace TrackerUI
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-            CreateTournamentForm frm = new CreateTournamentForm();
+            CreateTournamentForm frm = new CreateTournamentForm(this);
             frm.Show();
         }
 
@@ -35,10 +35,18 @@ namespace TrackerUI
             loadExistingTournamentDropDown.DisplayMember = "TournamentName";
         }
 
+        public void ReWireUp()
+        {
+            tournaments = GlobalConfig.Connection.getTournament_All();
+            loadExistingTournamentDropDown.DataSource = null;
+            loadExistingTournamentDropDown.DataSource = tournaments;
+            loadExistingTournamentDropDown.DisplayMember = "TournamentName";
+        }
+
         private void loadTournamentButton_Click(object sender, EventArgs e)
         {
             TournamentModel tm = (TournamentModel)(loadExistingTournamentDropDown.SelectedItem);
-            TournamentViewerForm frm = new TournamentViewerForm(tm);
+            TournamentViewerForm frm = new TournamentViewerForm(tm,this);
             frm.Show();
         }
 

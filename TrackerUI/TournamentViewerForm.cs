@@ -17,13 +17,15 @@ namespace TrackerUI
         private TournamentModel tournament;
         BindingList<int> rounds = new BindingList<int>();
         BindingList<MatchupModel> selectedMatchup = new BindingList<MatchupModel>();
+        TournamentDashBoardForm formCaller;
 
-
-        public TournamentViewerForm(TournamentModel tournamentModel)
+        public TournamentViewerForm(TournamentModel tournamentModel, TournamentDashBoardForm caller)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+
+            formCaller = caller;
 
             tournament = tournamentModel;
 
@@ -36,6 +38,7 @@ namespace TrackerUI
 
         private void Tournament_OnTournamentComplete(object sender, DateTime e)
         {
+            formCaller.ReWireUp();
             this.Close();
         }
 
