@@ -19,6 +19,7 @@ namespace TrackerUI
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Khởi tạo kết nối database
+            //newTrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
             Application.Run(new SelectDatabaseForm());
             
         }

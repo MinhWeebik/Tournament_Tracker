@@ -343,6 +343,10 @@ namespace newTrackerLibrary.DataAccess.TextHelper
         public static void SaveToTournamentFile(this List<TournamentModel> models)
         {
             List<string> lines = new List<string>();
+            if(lines.Count == 0)
+            {
+                File.WriteAllLines(GlobalConfig.TournamentFile.FullFilePath(), lines);
+            }
             foreach(TournamentModel tm in models)
             {
                 lines.Add($"{tm.Id},{tm.TournamentName},{tm.EntryFee},{convertTeamListToString(tm.EnteredTeams)},{convertPrizeListToString(tm.Prizes)},{convertRoundListToString(tm.Rounds)}");

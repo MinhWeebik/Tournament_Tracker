@@ -31,7 +31,7 @@ namespace TrackerUI
 
         private void selectButton_Click(object sender, EventArgs e)
         {
-            newTrackerLibrary.GlobalConfig.InitializeConnections((DatabaseType)databaseCombobox.SelectedItem);
+            GlobalConfig.InitializeConnections((DatabaseType)databaseCombobox.SelectedItem);
             TournamentDashBoardForm frm = new TournamentDashBoardForm();
             frm.Show();
             this.Hide();

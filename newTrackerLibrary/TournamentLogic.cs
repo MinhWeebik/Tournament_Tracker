@@ -45,6 +45,7 @@ namespace newTrackerLibrary
             {
                 model.AlertUserToNewRound();
             }
+
         }
 
         public static void AlertUserToNewRound(this TournamentModel model)
@@ -90,6 +91,28 @@ namespace newTrackerLibrary
             EmailLogic.sendEmail(to, subject, body.ToString());
         }
 
+        public static void CheckIfComplete(TournamentModel model)
+        {
+            bool output = false;
+            int roundFinished = 0;
+            foreach(List<MatchupModel> round in model.Rounds)
+            {
+                if(round.All(x => x.Winner != null))
+                {
+                    roundFinished += 1;
+                }
+            }
+            if(roundFinished == CheckCurrentRound(model))
+            {
+                output = true;
+            }
+            if(output)
+            {
+                CompleteTournament(model);
+            }
+
+        }
+
         public static int CheckCurrentRound(this TournamentModel model)
         {
             int output = 1;
@@ -104,7 +127,6 @@ namespace newTrackerLibrary
                     return output;
                 }
             }
-            CompleteTournament(model);
             return output - 1;
         }
 

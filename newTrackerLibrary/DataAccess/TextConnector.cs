@@ -13,7 +13,13 @@ namespace newTrackerLibrary.DataAccess
         public void completeTouranment(TournamentModel model)
         {
             List<TournamentModel> tournaments = GlobalConfig.TournamentFile.FullFilePath().LoadFile().ConvertToTournamentModels();
-            tournaments.Remove(model);
+            for(int i=0;i<tournaments.Count;i++)
+            {
+                if (tournaments[i].Id == model.Id)
+                {
+                    tournaments.RemoveAt(i);
+                }
+            }
             tournaments.SaveToTournamentFile();
             TournamentLogic.UpdateTournamentResult(model);
         }

@@ -29,7 +29,7 @@ namespace TrackerUI
 
             tournament = tournamentModel;
 
-            tournament.OnTournamentComplete += Tournament_OnTournamentComplete; ;
+            tournament.OnTournamentComplete += Tournament_OnTournamentComplete;
 
             LoadFormData();
 
@@ -157,6 +157,12 @@ namespace TrackerUI
 
         private void matchupListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            scoreButton.Enabled = true;
+            MatchupModel m = (MatchupModel)matchupListBox.SelectedItem;
+            if(m.Winner != null)
+            {
+                scoreButton.Enabled = false;
+            }
             LoadMatchup();
         }
 
@@ -185,11 +191,6 @@ namespace TrackerUI
                             {
                                 m.Entries[0].Score = teamOneScore;
                             }
-                            else
-                            {
-                                MessageBox.Show("Place holder");
-                                return;
-                            }
                         }
                     }
                     if (i == 1)
@@ -201,17 +202,13 @@ namespace TrackerUI
                             {
                                 m.Entries[1].Score = teamTwoScore;
                             }
-                            else
-                            {
-                                MessageBox.Show("Place holder");
-                                return;
-                            }
                         }
                     }
                 }
                 try
                 {
                     TournamentLogic.UpdateTournamentResult(tournament);
+                    TournamentLogic.CheckIfComplete(tournament);
                 }
                 catch (Exception ex)
                 {

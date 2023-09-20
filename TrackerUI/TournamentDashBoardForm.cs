@@ -14,6 +14,7 @@ namespace TrackerUI
 {
     public partial class TournamentDashBoardForm : Form
     {
+        
         List<TournamentModel> tournaments = GlobalConfig.Connection.getTournament_All();
         public TournamentDashBoardForm()
         {
@@ -45,14 +46,24 @@ namespace TrackerUI
 
         private void loadTournamentButton_Click(object sender, EventArgs e)
         {
-            TournamentModel tm = (TournamentModel)(loadExistingTournamentDropDown.SelectedItem);
-            TournamentViewerForm frm = new TournamentViewerForm(tm,this);
-            frm.Show();
+            errorLabel.Visible = false;
+            if (loadExistingTournamentDropDown.Items.Count != 0)
+            {
+                TournamentModel tm = (TournamentModel)(loadExistingTournamentDropDown.SelectedItem);
+                TournamentViewerForm frm = new TournamentViewerForm(tm, this);
+                frm.Show(); 
+            }
+            else
+            {
+                errorLabel.Visible = true;
+            }
         }
 
         private void TournamentDashBoardForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
         }
+
+        
     }
 }
