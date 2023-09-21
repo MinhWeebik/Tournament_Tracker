@@ -49,6 +49,7 @@
             this.deleteSelectedMemberButton = new System.Windows.Forms.Button();
             this.createTeamButton = new System.Windows.Forms.Button();
             this.errorMessageLabel = new System.Windows.Forms.Label();
+            this.emailErrorLabel = new System.Windows.Forms.Label();
             this.addNewNumberGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -278,12 +279,25 @@
             this.errorMessageLabel.Text = "Chưa thêm thành viên nào vào đội";
             this.errorMessageLabel.Visible = false;
             // 
+            // emailErrorLabel
+            // 
+            this.emailErrorLabel.AutoSize = true;
+            this.emailErrorLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.emailErrorLabel.Location = new System.Drawing.Point(28, 710);
+            this.emailErrorLabel.Name = "emailErrorLabel";
+            this.emailErrorLabel.Size = new System.Drawing.Size(144, 21);
+            this.emailErrorLabel.TabIndex = 28;
+            this.emailErrorLabel.Text = "Email không hợp lệ";
+            this.emailErrorLabel.Visible = false;
+            // 
             // CreateTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(956, 814);
+            this.Controls.Add(this.emailErrorLabel);
             this.Controls.Add(this.errorMessageLabel);
             this.Controls.Add(this.createTeamButton);
             this.Controls.Add(this.deleteSelectedMemberButton);
@@ -329,5 +343,6 @@
         private System.Windows.Forms.Button deleteSelectedMemberButton;
         private System.Windows.Forms.Button createTeamButton;
         private System.Windows.Forms.Label errorMessageLabel;
+        private System.Windows.Forms.Label emailErrorLabel;
     }
 }

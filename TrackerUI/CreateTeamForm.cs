@@ -55,9 +55,28 @@ namespace TrackerUI
                 cellphoneValue.Text = "";
             }
         }
+        private bool IsValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         private bool ValidatePerson()
         {
+            emailErrorLabel.Visible = false;
             firstNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
             lastNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
             emailLabel.ForeColor = Color.FromArgb(51, 153, 255);
@@ -82,6 +101,12 @@ namespace TrackerUI
             {
                 output = false;
                 cellphoneLabel.ForeColor = Color.Red;
+            }
+            if(!IsValidEmail(emailValue.Text))
+            {
+                output = false;
+                emailErrorLabel.Visible = true;
+                emailLabel.ForeColor = Color.Red;
             }
             return output;
         }
