@@ -35,6 +35,7 @@
             this.loadTournamentButton = new System.Windows.Forms.Button();
             this.createTournamentButton = new System.Windows.Forms.Button();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.deleteTournamentButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -75,9 +76,9 @@
             this.loadTournamentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadTournamentButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadTournamentButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.loadTournamentButton.Location = new System.Drawing.Point(161, 211);
+            this.loadTournamentButton.Location = new System.Drawing.Point(92, 211);
             this.loadTournamentButton.Name = "loadTournamentButton";
-            this.loadTournamentButton.Size = new System.Drawing.Size(210, 45);
+            this.loadTournamentButton.Size = new System.Drawing.Size(165, 45);
             this.loadTournamentButton.TabIndex = 20;
             this.loadTournamentButton.Text = "Chọn giải đấu";
             this.loadTournamentButton.UseVisualStyleBackColor = true;
@@ -111,12 +112,29 @@
             this.errorLabel.Text = "Chưa có giải đấu nào";
             this.errorLabel.Visible = false;
             // 
+            // deleteTournamentButton
+            // 
+            this.deleteTournamentButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.deleteTournamentButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.deleteTournamentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.deleteTournamentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.deleteTournamentButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteTournamentButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.deleteTournamentButton.Location = new System.Drawing.Point(276, 211);
+            this.deleteTournamentButton.Name = "deleteTournamentButton";
+            this.deleteTournamentButton.Size = new System.Drawing.Size(165, 45);
+            this.deleteTournamentButton.TabIndex = 23;
+            this.deleteTournamentButton.Text = "Xóa giải đấu";
+            this.deleteTournamentButton.UseVisualStyleBackColor = true;
+            this.deleteTournamentButton.Click += new System.EventHandler(this.deleteTournamentButton_Click);
+            // 
             // TournamentDashBoardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(544, 409);
+            this.Controls.Add(this.deleteTournamentButton);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.createTournamentButton);
             this.Controls.Add(this.loadTournamentButton);
@@ -142,5 +160,6 @@
         private System.Windows.Forms.Button loadTournamentButton;
         private System.Windows.Forms.Button createTournamentButton;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Button deleteTournamentButton;
     }
 }

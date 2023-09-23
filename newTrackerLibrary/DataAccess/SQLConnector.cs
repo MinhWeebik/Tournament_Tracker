@@ -42,6 +42,17 @@ namespace newTrackerLibrary.DataAccess
             }
         }
 
+        public void createTeamMember(PersonModel model,TeamModel teamModel)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@thisTeamId", teamModel.Id);
+                p.Add("@thisPersonId", model.Id);
+                connection.Execute("dbo.spTeamMembers_UpdateByActive", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public void createTeam(TeamModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
@@ -272,6 +283,48 @@ namespace newTrackerLibrary.DataAccess
                 var p = new DynamicParameters();
                 p.Add("@id", model.Id);
                 connection.Execute("dbo.spTournaments_Complete", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void deleteTeamMember(PersonModel model, TeamModel teamModel)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@TeamId", teamModel.Id);
+                p.Add("@PersonId", model.Id);
+                connection.Execute("dbo.spTeamMembers_Delete", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void updateTeam(TeamModel model,string teamName)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@TeamName", teamName);
+                p.Add("@id", model.Id);
+                connection.Execute("dbo.spTeams_Update", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void deleteTeam(TeamModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@id", model.Id);
+                connection.Execute("dbo.spTeams_Delete", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void deleteTournament(TournamentModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@id", model.Id);
+                connection.Execute("dbo.spTournament_Delete", p, commandType: CommandType.StoredProcedure);
             }
         }
     }

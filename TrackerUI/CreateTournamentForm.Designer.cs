@@ -48,6 +48,8 @@
             this.createTournamentButton = new System.Windows.Forms.Button();
             this.noTeamsErrorLabel = new System.Windows.Forms.Label();
             this.prizeErrorLabel = new System.Windows.Forms.Label();
+            this.editTeamButton = new System.Windows.Forms.Button();
+            this.currentlyParticipatingErrorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -136,9 +138,9 @@
             this.addTeamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addTeamButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.addTeamButton.Location = new System.Drawing.Point(76, 353);
+            this.addTeamButton.Location = new System.Drawing.Point(45, 353);
             this.addTeamButton.Name = "addTeamButton";
-            this.addTeamButton.Size = new System.Drawing.Size(210, 45);
+            this.addTeamButton.Size = new System.Drawing.Size(119, 45);
             this.addTeamButton.TabIndex = 15;
             this.addTeamButton.Text = "Thêm đội";
             this.addTeamButton.UseVisualStyleBackColor = true;
@@ -274,12 +276,42 @@
             this.prizeErrorLabel.Text = "Chỉ được tạo tối đa 2 phần thưởng";
             this.prizeErrorLabel.Visible = false;
             // 
+            // editTeamButton
+            // 
+            this.editTeamButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.editTeamButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.editTeamButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.editTeamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editTeamButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.editTeamButton.Location = new System.Drawing.Point(187, 353);
+            this.editTeamButton.Name = "editTeamButton";
+            this.editTeamButton.Size = new System.Drawing.Size(119, 45);
+            this.editTeamButton.TabIndex = 28;
+            this.editTeamButton.Text = "Sửa đội";
+            this.editTeamButton.UseVisualStyleBackColor = true;
+            this.editTeamButton.Click += new System.EventHandler(this.editTeamButton_Click);
+            // 
+            // currentlyParticipatingErrorLabel
+            // 
+            this.currentlyParticipatingErrorLabel.AutoSize = true;
+            this.currentlyParticipatingErrorLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentlyParticipatingErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.currentlyParticipatingErrorLabel.Location = new System.Drawing.Point(41, 398);
+            this.currentlyParticipatingErrorLabel.Name = "currentlyParticipatingErrorLabel";
+            this.currentlyParticipatingErrorLabel.Size = new System.Drawing.Size(255, 21);
+            this.currentlyParticipatingErrorLabel.TabIndex = 29;
+            this.currentlyParticipatingErrorLabel.Text = "Đội này đang tham gia vào giải đấu";
+            this.currentlyParticipatingErrorLabel.Visible = false;
+            // 
             // CreateTournamentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(898, 628);
+            this.Controls.Add(this.currentlyParticipatingErrorLabel);
+            this.Controls.Add(this.editTeamButton);
             this.Controls.Add(this.prizeErrorLabel);
             this.Controls.Add(this.noTeamsErrorLabel);
             this.Controls.Add(this.createTournamentButton);
@@ -330,5 +362,7 @@
         private System.Windows.Forms.Button createTournamentButton;
         private System.Windows.Forms.Label noTeamsErrorLabel;
         private System.Windows.Forms.Label prizeErrorLabel;
+        private System.Windows.Forms.Button editTeamButton;
+        private System.Windows.Forms.Label currentlyParticipatingErrorLabel;
     }
 }

@@ -69,6 +69,19 @@ namespace newTrackerLibrary.DataAccess
             teams.SaveToTeamFile();
         }
 
+        public void createTeamMember(PersonModel model, TeamModel teamModel)
+        {
+            List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels();
+            foreach(TeamModel team in teams)
+            {
+                if(team.Id == teamModel.Id)
+                {
+                    team.TeamMembers.Add(model);
+                }
+            }
+            teams.SaveToTeamFile();
+        }
+
         public void createTournament(TournamentModel model)
         {
             List<TournamentModel> tournaments = GlobalConfig.TournamentFile.FullFilePath().LoadFile().ConvertToTournamentModels();
@@ -82,6 +95,51 @@ namespace newTrackerLibrary.DataAccess
             tournaments.Add(model);
             tournaments.SaveToTournamentFile();
             TournamentLogic.UpdateTournamentResult(model);
+        }
+
+        public void deleteTeam(TeamModel model)
+        {
+            List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels();
+            for (int i = 0; i < teams.Count; i++)
+            {
+                if (teams[i].Id == model.Id)
+                {
+                    teams.RemoveAt(i);
+                }
+            }
+            teams.SaveToTeamFile();
+        }
+
+        public void deleteTeamMember(PersonModel model, TeamModel teamModel)
+        {
+            List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels();
+            foreach(TeamModel team in teams)
+            {
+                if(team.Id == teamModel.Id)
+                {
+                    foreach(PersonModel p in team.TeamMembers.ToList())
+                    {
+                        if(p.Id == model.Id)
+                        {
+                            team.TeamMembers.Remove(p);
+                        }
+                    }
+                }
+            }
+            teams.SaveToTeamFile();
+        }
+
+        public void deleteTournament(TournamentModel model)
+        {
+            List<TournamentModel> tournaments = GlobalConfig.TournamentFile.FullFilePath().LoadFile().ConvertToTournamentModels();
+            for (int i = 0; i < tournaments.Count; i++)
+            {
+                if (tournaments[i].Id == model.Id)
+                {
+                    tournaments.RemoveAt(i);
+                }
+            }
+            tournaments.SaveToTournamentFile();
         }
 
         public List<PersonModel> getPerson_All()
@@ -103,6 +161,19 @@ namespace newTrackerLibrary.DataAccess
         public void updateMatchup(MatchupModel model)
         {
             model.UpdateMatchupToFile();
+        }
+
+        public void updateTeam(TeamModel model, string teamName)
+        {
+            List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels();
+            foreach(TeamModel team in teams) 
+            {
+                if(team.Id == model.Id)
+                {
+                    team.TeamName = teamName;
+                }
+            }
+            teams.SaveToTeamFile();
         }
     }
 }

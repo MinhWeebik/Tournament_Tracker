@@ -40,6 +40,14 @@ namespace TrackerUI
             prizesListBox.DisplayMember = "PlaceName";
         }
 
+        public void ReWireUp()
+        {
+            availableTeams = GlobalConfig.Connection.getTeam_All();
+            selectTeamDropDown.DataSource = null;
+            selectTeamDropDown.DataSource = availableTeams;
+            selectTeamDropDown.DisplayMember = "TeamName";
+        }
+
         private void addTeamButton_Click(object sender, EventArgs e)
         {
             TeamModel t = (TeamModel)selectTeamDropDown.SelectedItem;
@@ -49,6 +57,20 @@ namespace TrackerUI
                 selectedTeams.Add(t);
                 WireUpList();
             }
+        }
+
+        private TeamModel refreshTeamModel(TeamModel model)
+        {
+            List<TeamModel> allModel = GlobalConfig.Connection.getTeam_All();
+            TeamModel newModel = new TeamModel();
+            foreach(TeamModel t in allModel)
+            {
+                if(model.Id == t.Id)
+                {
+                    newModel = t;
+                }
+            }
+            return newModel;
         }
 
         private void createPrizeButton_Click(object sender, EventArgs e)
@@ -163,6 +185,47 @@ namespace TrackerUI
                 noTeamsErrorLabel.Visible = true;
             }
             return output;
+        }
+
+        private bool checkIfParticipating(TeamModel team)
+        {
+            bool output = false;
+            List<TournamentModel> tournaments = GlobalConfig.Connection.getTournament_All();
+            foreach(TournamentModel tournament in tournaments)
+            {
+                foreach(TeamModel t in tournament.EnteredTeams)
+                {
+                    if(team.Id == t.Id)
+                    {
+                        output = true;
+                    }
+                }
+            }
+            return output;
+        }
+
+        private void editTeamButton_Click(object sender, EventArgs e)
+        {
+            currentlyParticipatingErrorLabel.Visible = false;
+            if (selectTeamDropDown.Items.Count != 0)
+            {
+                TeamModel newTeam = refreshTeamModel((TeamModel)selectTeamDropDown.SelectedItem);
+                if (!checkIfParticipating(newTeam))
+                {
+                    EditTeamForm frm = new EditTeamForm(newTeam, this);
+                    frm.Show();
+                }
+                else
+                {
+                    currentlyParticipatingErrorLabel.Text = "Đội này đang tham gia vào giải đấu";
+                    currentlyParticipatingErrorLabel.Visible = true;
+                } 
+            }
+            else
+            {
+                currentlyParticipatingErrorLabel.Text = "Chưa chọn đội nào để sửa";
+                currentlyParticipatingErrorLabel.Visible = true;
+            }
         }
     }
 }

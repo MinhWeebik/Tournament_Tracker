@@ -64,6 +64,26 @@ namespace TrackerUI
             Environment.Exit(0);
         }
 
-        
+        private void deleteTournamentButton_Click(object sender, EventArgs e)
+        {
+            errorLabel.Visible = false;
+            if (loadExistingTournamentDropDown.Items.Count != 0)
+            {
+                var confirmResult = MessageBox.Show("Bạn có chắc bạn muốn xóa giải đấu này?",
+                                     "Xác nhận xóa!",
+                                     MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    TournamentModel tm = (TournamentModel)(loadExistingTournamentDropDown.SelectedItem);
+                    GlobalConfig.Connection.deleteTournament(tm);
+                    ReWireUp();
+                    TournamentLogic.SendTournamentCancelEmail(tm);
+                }
+            }
+            else
+            {
+                errorLabel.Visible = true;
+            }
+        }
     }
 }

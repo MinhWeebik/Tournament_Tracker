@@ -191,6 +191,29 @@ namespace newTrackerLibrary
             model.CompleteTournament();
         }
 
+        public static void SendTournamentCancelEmail(TournamentModel model)
+        {
+            string subject = "";
+            StringBuilder body = new StringBuilder();
+
+            subject = $"Giải đấu {model.TournamentName} đã bị hủy";
+            body.AppendLine("<h1>Giải đấu đã bị hủy</h1>");
+            body.AppendLine("<p>Xin lỗi những đội đã tham gia</p>");
+            body.AppendLine("<br/>");
+            body.AppendLine("<p>Các đội sẽ được hoàn lại phí tham gia</p>");
+            body.AppendLine("<p>Cảm ơn mọi người vì đã thông cảm</p>");
+            body.AppendLine("~Tournament Tracker");
+            List<string> bcc = new List<string>();
+            foreach (TeamModel t in model.EnteredTeams)
+            {
+                foreach (PersonModel p in t.TeamMembers)
+                {
+                    bcc.Add(p.EmailAddress);
+                }
+            }
+            EmailLogic.sendEmail(new List<string>(), bcc, subject, body.ToString());
+        }
+
         private static decimal CalculatePrizePayout(this PrizeModel prize, decimal totalIncome)
         {
             decimal output = 0;
