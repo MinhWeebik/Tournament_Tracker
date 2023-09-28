@@ -50,6 +50,8 @@
             this.createTeamButton = new System.Windows.Forms.Button();
             this.errorMessageLabel = new System.Windows.Forms.Label();
             this.emailErrorLabel = new System.Windows.Forms.Label();
+            this.searchValue = new System.Windows.Forms.TextBox();
+            this.searchLabel = new System.Windows.Forms.Label();
             this.addNewNumberGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -291,12 +293,33 @@
             this.emailErrorLabel.Text = "Email không hợp lệ";
             this.emailErrorLabel.Visible = false;
             // 
+            // searchValue
+            // 
+            this.searchValue.Location = new System.Drawing.Point(438, 66);
+            this.searchValue.Name = "searchValue";
+            this.searchValue.Size = new System.Drawing.Size(307, 35);
+            this.searchValue.TabIndex = 29;
+            this.searchValue.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.searchLabel.Location = new System.Drawing.Point(431, 25);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(131, 38);
+            this.searchLabel.TabIndex = 30;
+            this.searchLabel.Text = "Tìm kiếm";
+            // 
             // CreateTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(956, 814);
+            this.Controls.Add(this.searchLabel);
+            this.Controls.Add(this.searchValue);
             this.Controls.Add(this.emailErrorLabel);
             this.Controls.Add(this.errorMessageLabel);
             this.Controls.Add(this.createTeamButton);
@@ -344,5 +367,7 @@
         private System.Windows.Forms.Button createTeamButton;
         private System.Windows.Forms.Label errorMessageLabel;
         private System.Windows.Forms.Label emailErrorLabel;
+        private System.Windows.Forms.TextBox searchValue;
+        private System.Windows.Forms.Label searchLabel;
     }
 }

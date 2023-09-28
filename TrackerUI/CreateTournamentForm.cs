@@ -17,6 +17,7 @@ namespace TrackerUI
         List<TeamModel> availableTeams = GlobalConfig.Connection.getTeam_All();
         List<TeamModel> selectedTeams = new List<TeamModel>();
         List<PrizeModel> selectedPrizes = new List<PrizeModel>();
+        private List<TeamModel> searchResultTeams = new List<TeamModel>();
         TournamentDashBoardForm formCaller;
         public CreateTournamentForm(TournamentDashBoardForm caller)
         {
@@ -29,8 +30,9 @@ namespace TrackerUI
 
         private void WireUpList()
         {
+            SearchResult();
             selectTeamDropDown.DataSource = null;
-            selectTeamDropDown.DataSource = availableTeams;
+            selectTeamDropDown.DataSource = searchResultTeams;
             selectTeamDropDown.DisplayMember = "TeamName";
             tournamentTeamsListBox.DataSource = null;
             tournamentTeamsListBox.DataSource = selectedTeams;
@@ -43,9 +45,29 @@ namespace TrackerUI
         public void ReWireUp()
         {
             availableTeams = GlobalConfig.Connection.getTeam_All();
+            SearchResult();
             selectTeamDropDown.DataSource = null;
-            selectTeamDropDown.DataSource = availableTeams;
+            selectTeamDropDown.DataSource = searchResultTeams;
             selectTeamDropDown.DisplayMember = "TeamName";
+        }
+
+        private void SearchResult()
+        {
+            searchResultTeams = new List<TeamModel>();
+            if (searchValue.Text.Length != 0)
+            {
+                foreach (TeamModel team in availableTeams)
+                {
+                    if (TournamentLogic.IsMatch(searchValue.Text.ToLower(), team.TeamName.ToLower()))
+                    {
+                        searchResultTeams.Add(team);
+                    }
+                }
+            }
+            else
+            {
+                searchResultTeams = availableTeams;
+            }
         }
 
         private void addTeamButton_Click(object sender, EventArgs e)
@@ -226,6 +248,11 @@ namespace TrackerUI
                 currentlyParticipatingErrorLabel.Text = "Chưa chọn đội nào để sửa";
                 currentlyParticipatingErrorLabel.Visible = true;
             }
+        }
+
+        private void searchValue_TextChanged(object sender, EventArgs e)
+        {
+            ReWireUp();
         }
     }
 }

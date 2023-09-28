@@ -69,7 +69,7 @@ namespace TrackerUI
             errorLabel.Visible = false;
             if (loadExistingTournamentDropDown.Items.Count != 0)
             {
-                var confirmResult = MessageBox.Show("Bạn có chắc bạn muốn xóa giải đấu này?",
+                var confirmResult = MessageBox.Show("Bạn có chắc bạn muốn hủy giải đấu này?",
                                      "Xác nhận xóa!",
                                      MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)

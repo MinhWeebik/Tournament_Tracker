@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace newTrackerLibrary
@@ -348,5 +349,11 @@ namespace newTrackerLibrary
         {
             return teams.OrderBy(x => Guid.NewGuid()).ToList();
         }
+
+        public static bool IsMatch(string input, string word)
+        {
+            return word.Contains(input);
+        }
+    
     }
 }

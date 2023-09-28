@@ -124,7 +124,7 @@
             this.deleteTournamentButton.Name = "deleteTournamentButton";
             this.deleteTournamentButton.Size = new System.Drawing.Size(165, 45);
             this.deleteTournamentButton.TabIndex = 23;
-            this.deleteTournamentButton.Text = "Xóa giải đấu";
+            this.deleteTournamentButton.Text = "Hủy giải đấu";
             this.deleteTournamentButton.UseVisualStyleBackColor = true;
             this.deleteTournamentButton.Click += new System.EventHandler(this.deleteTournamentButton_Click);
             // 

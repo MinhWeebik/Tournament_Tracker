@@ -17,6 +17,7 @@ namespace TrackerUI
     {
         private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.getPerson_All();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
+        private List<PersonModel> searchResultTeamMembers = new List<PersonModel>();
         TeamModel team = new TeamModel();
         CreateTournamentForm formCalled;
         public EditTeamForm(TeamModel model, CreateTournamentForm caller)
@@ -32,13 +33,33 @@ namespace TrackerUI
 
         private void WireUpList()
         {
+            SearchResult();
             selectTeamMemberDropDown.DataSource = null;
-            selectTeamMemberDropDown.DataSource = availableTeamMembers;
+            selectTeamMemberDropDown.DataSource = searchResultTeamMembers;
             selectTeamMemberDropDown.DisplayMember = "FullName";
 
             teamMembersListBox.DataSource = null;
             teamMembersListBox.DataSource = selectedTeamMembers;
             teamMembersListBox.DisplayMember = "FullName";
+        }
+
+        private void SearchResult()
+        {
+            searchResultTeamMembers = new List<PersonModel>();
+            if (searchValue.Text.Length != 0)
+            {
+                foreach (PersonModel person in availableTeamMembers)
+                {
+                    if (TournamentLogic.IsMatch(searchValue.Text.ToLower(), person.FullName.ToLower()))
+                    {
+                        searchResultTeamMembers.Add(person);
+                    }
+                }
+            }
+            else
+            {
+                searchResultTeamMembers = availableTeamMembers;
+            }
         }
 
         private void showData()
@@ -48,8 +69,6 @@ namespace TrackerUI
             {
                 selectedTeamMembers.Add(member);
             }
-            IEnumerable<PersonModel> common = selectedTeamMembers.Intersect(availableTeamMembers).ToList();
-            availableTeamMembers.RemoveAll(x => common.Contains(x));
             int count = availableTeamMembers.Count;
             int currTeamMemberId = 0;
             int currPosition = 0;
@@ -221,6 +240,11 @@ namespace TrackerUI
                 formCalled.ReWireUp();
                 this.Close();
             }
+        }
+
+        private void searchValue_TextChanged(object sender, EventArgs e)
+        {
+            WireUpList();
         }
     }
 }

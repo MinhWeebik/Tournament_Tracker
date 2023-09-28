@@ -16,6 +16,7 @@ namespace TrackerUI
     {
         private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.getPerson_All();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
+        private List<PersonModel> searchResultTeamMembers = new List<PersonModel>();
         private ITeamRequester callingForm;
         public CreateTeamForm(ITeamRequester caller)
         {
@@ -28,13 +29,33 @@ namespace TrackerUI
 
         private void WireUpList()
         {
+            SearchResult();
             selectTeamMemberDropDown.DataSource = null;
-            selectTeamMemberDropDown.DataSource = availableTeamMembers;
+            selectTeamMemberDropDown.DataSource = searchResultTeamMembers;
             selectTeamMemberDropDown.DisplayMember = "FullName";
 
             teamMembersListBox.DataSource = null;
             teamMembersListBox.DataSource = selectedTeamMembers;
             teamMembersListBox.DisplayMember = "FullName";
+        }
+
+        private void SearchResult()
+        {
+            searchResultTeamMembers = new List<PersonModel>();
+            if (searchValue.Text.Length != 0)
+            {
+                foreach (PersonModel person in availableTeamMembers)
+                {
+                    if (TournamentLogic.IsMatch(searchValue.Text.ToLower(), person.FullName.ToLower()))
+                    {
+                        searchResultTeamMembers.Add(person);
+                    }
+                } 
+            }
+            else
+            {
+                searchResultTeamMembers = availableTeamMembers;
+            }
         }
 
         private void createMemberButton_Click(object sender, EventArgs e)
@@ -162,6 +183,11 @@ namespace TrackerUI
                 callingForm.teamComplete(t);
                 this.Close(); 
             }
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            WireUpList();
         }
     }
 }

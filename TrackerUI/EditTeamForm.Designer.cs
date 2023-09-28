@@ -51,6 +51,8 @@
             this.teamNameLabel = new System.Windows.Forms.Label();
             this.headerLabel = new System.Windows.Forms.Label();
             this.deleteTeamButton = new System.Windows.Forms.Button();
+            this.searchValue = new System.Windows.Forms.TextBox();
+            this.searchLabel = new System.Windows.Forms.Label();
             this.addNewNumberGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,7 +119,7 @@
             this.teamMembersListBox.ItemHeight = 30;
             this.teamMembersListBox.Location = new System.Drawing.Point(440, 123);
             this.teamMembersListBox.Name = "teamMembersListBox";
-            this.teamMembersListBox.Size = new System.Drawing.Size(307, 512);
+            this.teamMembersListBox.Size = new System.Drawing.Size(307, 482);
             this.teamMembersListBox.TabIndex = 36;
             // 
             // createMemberButton
@@ -308,12 +310,33 @@
             this.deleteTeamButton.UseVisualStyleBackColor = true;
             this.deleteTeamButton.Click += new System.EventHandler(this.deleteTeamButton_Click_1);
             // 
+            // searchValue
+            // 
+            this.searchValue.Location = new System.Drawing.Point(440, 62);
+            this.searchValue.Name = "searchValue";
+            this.searchValue.Size = new System.Drawing.Size(307, 36);
+            this.searchValue.TabIndex = 42;
+            this.searchValue.TextChanged += new System.EventHandler(this.searchValue_TextChanged);
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.searchLabel.Location = new System.Drawing.Point(433, 21);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(131, 38);
+            this.searchLabel.TabIndex = 43;
+            this.searchLabel.Text = "Tìm kiếm";
+            // 
             // EditTeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(948, 820);
+            this.Controls.Add(this.searchLabel);
+            this.Controls.Add(this.searchValue);
             this.Controls.Add(this.deleteTeamButton);
             this.Controls.Add(this.emailErrorLabel);
             this.Controls.Add(this.errorMessageLabel);
@@ -364,5 +387,7 @@
         private System.Windows.Forms.Label teamNameLabel;
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.Button deleteTeamButton;
+        private System.Windows.Forms.TextBox searchValue;
+        private System.Windows.Forms.Label searchLabel;
     }
 }
