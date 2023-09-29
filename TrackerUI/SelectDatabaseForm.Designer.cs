@@ -32,6 +32,9 @@
             this.databaseCombobox = new System.Windows.Forms.ComboBox();
             this.headerLabel = new System.Windows.Forms.Label();
             this.selectButton = new System.Windows.Forms.Button();
+            this.selectFilePathButton = new System.Windows.Forms.Button();
+            this.filePathText = new System.Windows.Forms.TextBox();
+            this.filePathLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // databaseCombobox
@@ -41,6 +44,7 @@
             this.databaseCombobox.Name = "databaseCombobox";
             this.databaseCombobox.Size = new System.Drawing.Size(243, 38);
             this.databaseCombobox.TabIndex = 0;
+            this.databaseCombobox.SelectedIndexChanged += new System.EventHandler(this.databaseCombobox_SelectedIndexChanged);
             // 
             // headerLabel
             // 
@@ -61,20 +65,60 @@
             this.selectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.selectButton.Location = new System.Drawing.Point(136, 154);
+            this.selectButton.Location = new System.Drawing.Point(68, 140);
             this.selectButton.Name = "selectButton";
-            this.selectButton.Size = new System.Drawing.Size(115, 42);
+            this.selectButton.Size = new System.Drawing.Size(243, 42);
             this.selectButton.TabIndex = 14;
-            this.selectButton.Text = "Chọn";
+            this.selectButton.Text = "Chọn CSDL";
             this.selectButton.UseVisualStyleBackColor = true;
             this.selectButton.Click += new System.EventHandler(this.selectButton_Click);
             // 
-            // SelectDatabase
+            // selectFilePathButton
+            // 
+            this.selectFilePathButton.Enabled = false;
+            this.selectFilePathButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.selectFilePathButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.selectFilePathButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.selectFilePathButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectFilePathButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectFilePathButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.selectFilePathButton.Location = new System.Drawing.Point(68, 188);
+            this.selectFilePathButton.Name = "selectFilePathButton";
+            this.selectFilePathButton.Size = new System.Drawing.Size(243, 42);
+            this.selectFilePathButton.TabIndex = 15;
+            this.selectFilePathButton.Text = "Chọn địa điểm lưu";
+            this.selectFilePathButton.UseVisualStyleBackColor = true;
+            this.selectFilePathButton.Click += new System.EventHandler(this.selectFilePathButton_Click);
+            // 
+            // filePathText
+            // 
+            this.filePathText.Enabled = false;
+            this.filePathText.Location = new System.Drawing.Point(68, 262);
+            this.filePathText.Name = "filePathText";
+            this.filePathText.ReadOnly = true;
+            this.filePathText.Size = new System.Drawing.Size(243, 35);
+            this.filePathText.TabIndex = 17;
+            // 
+            // filePathLabel
+            // 
+            this.filePathLabel.AutoSize = true;
+            this.filePathLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filePathLabel.ForeColor = System.Drawing.Color.Black;
+            this.filePathLabel.Location = new System.Drawing.Point(69, 233);
+            this.filePathLabel.Name = "filePathLabel";
+            this.filePathLabel.Size = new System.Drawing.Size(242, 25);
+            this.filePathLabel.TabIndex = 18;
+            this.filePathLabel.Text = "Địa điểm lưu file hiện tại là:";
+            // 
+            // SelectDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(383, 219);
+            this.ClientSize = new System.Drawing.Size(383, 337);
+            this.Controls.Add(this.filePathLabel);
+            this.Controls.Add(this.filePathText);
+            this.Controls.Add(this.selectFilePathButton);
             this.Controls.Add(this.selectButton);
             this.Controls.Add(this.headerLabel);
             this.Controls.Add(this.databaseCombobox);
@@ -82,7 +126,7 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            this.Name = "SelectDatabase";
+            this.Name = "SelectDatabaseForm";
             this.Text = "Chọn cơ sở dữ liệu";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -94,5 +138,8 @@
         private System.Windows.Forms.ComboBox databaseCombobox;
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.Button selectButton;
+        private System.Windows.Forms.Button selectFilePathButton;
+        private System.Windows.Forms.TextBox filePathText;
+        private System.Windows.Forms.Label filePathLabel;
     }
 }
