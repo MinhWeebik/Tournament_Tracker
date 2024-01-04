@@ -222,8 +222,8 @@ namespace TrackerUI
 
         private string ValidateForm()
         {
-            teamOneScoreLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            teamTwoScoreLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            teamOneScoreLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            teamTwoScoreLabel.ForeColor = Color.FromArgb(147, 197, 114);
             errorMessage.Visible = false;
             string output = "";
             bool teamOneScoreValid = int.TryParse(teamOneScoreValue.Text, out int teamOneScoreOutput);
@@ -270,6 +270,16 @@ namespace TrackerUI
                 }
             }
             return output;
+        }
+
+        private void scoreButton_MouseEnter(object sender, EventArgs e)
+        {
+            scoreButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void scoreButton_MouseLeave(object sender, EventArgs e)
+        {
+            scoreButton.ForeColor = Color.FromArgb(147, 197, 114);
         }
     }
 }

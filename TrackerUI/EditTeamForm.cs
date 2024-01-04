@@ -116,10 +116,10 @@ namespace TrackerUI
         private bool ValidatePerson()
         {
             emailErrorLabel.Visible = false;
-            firstNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            lastNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            emailLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            cellphoneLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            firstNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            lastNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            emailLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            cellphoneLabel.ForeColor = Color.FromArgb(147, 197, 114);
             bool output = true;
             if (firstNameValue.Text.Length == 0)
             {
@@ -152,7 +152,7 @@ namespace TrackerUI
 
         private bool ValidateTeam()
         {
-            teamNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            teamNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
             errorMessageLabel.Visible = false;
             bool output = true;
             if (teamNameValue.Text.Length == 0)
@@ -245,6 +245,64 @@ namespace TrackerUI
         private void searchValue_TextChanged(object sender, EventArgs e)
         {
             WireUpList();
+        }
+
+        private void addMemberButton_MouseEnter(object sender, EventArgs e)
+        {
+            addMemberButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void addMemberButton_MouseLeave(object sender, EventArgs e)
+        {
+            addMemberButton.ForeColor = Color.FromArgb(147, 197, 114);
+        }
+
+        private void createMemberButton_MouseEnter(object sender, EventArgs e)
+        {
+            createMemberButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void createMemberButton_MouseLeave(object sender, EventArgs e)
+        {
+            createMemberButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void updateTeamButton_MouseEnter(object sender, EventArgs e)
+        {
+            updateTeamButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void updateTeamButton_MouseLeave(object sender, EventArgs e)
+        {
+            updateTeamButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void deleteTeamButton_MouseEnter(object sender, EventArgs e)
+        {
+            deleteTeamButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void deleteTeamButton_MouseLeave(object sender, EventArgs e)
+        {
+            deleteTeamButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void deleteSelectedMemberButton_MouseEnter(object sender, EventArgs e)
+        {
+            deleteSelectedMemberButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void deleteSelectedMemberButton_MouseLeave(object sender, EventArgs e)
+        {
+            deleteSelectedMemberButton.ForeColor = Color.FromArgb(147, 197, 114);
+
         }
     }
 }

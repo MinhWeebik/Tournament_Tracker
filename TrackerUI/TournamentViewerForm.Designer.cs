@@ -50,7 +50,7 @@
             // 
             this.headerLabel.AutoSize = true;
             this.headerLabel.Font = new System.Drawing.Font("Segoe UI Light", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.headerLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.headerLabel.Location = new System.Drawing.Point(23, 22);
             this.headerLabel.Name = "headerLabel";
             this.headerLabel.Size = new System.Drawing.Size(158, 50);
@@ -61,7 +61,7 @@
             // 
             this.tournamentName.AutoSize = true;
             this.tournamentName.Font = new System.Drawing.Font("Segoe UI Light", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tournamentName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.tournamentName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.tournamentName.Location = new System.Drawing.Point(176, 22);
             this.tournamentName.Name = "tournamentName";
             this.tournamentName.Size = new System.Drawing.Size(150, 50);
@@ -72,7 +72,7 @@
             // 
             this.roundLabel.AutoSize = true;
             this.roundLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.roundLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.roundLabel.Location = new System.Drawing.Point(25, 92);
             this.roundLabel.Name = "roundLabel";
             this.roundLabel.Size = new System.Drawing.Size(80, 38);
@@ -81,6 +81,9 @@
             // 
             // roundDropDown
             // 
+            this.roundDropDown.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.roundDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roundDropDown.ForeColor = System.Drawing.Color.DarkGreen;
             this.roundDropDown.FormattingEnabled = true;
             this.roundDropDown.Location = new System.Drawing.Point(111, 92);
             this.roundDropDown.Name = "roundDropDown";
@@ -91,12 +94,12 @@
             // unplayedOnlyCheckBox
             // 
             this.unplayedOnlyCheckBox.AutoSize = true;
-            this.unplayedOnlyCheckBox.BackColor = System.Drawing.Color.White;
+            this.unplayedOnlyCheckBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.unplayedOnlyCheckBox.Checked = true;
             this.unplayedOnlyCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.unplayedOnlyCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.unplayedOnlyCheckBox.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unplayedOnlyCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.unplayedOnlyCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.unplayedOnlyCheckBox.Location = new System.Drawing.Point(111, 136);
             this.unplayedOnlyCheckBox.Name = "unplayedOnlyCheckBox";
             this.unplayedOnlyCheckBox.Size = new System.Drawing.Size(355, 36);
@@ -107,7 +110,9 @@
             // 
             // matchupListBox
             // 
+            this.matchupListBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.matchupListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.matchupListBox.ForeColor = System.Drawing.Color.DarkGreen;
             this.matchupListBox.FormattingEnabled = true;
             this.matchupListBox.ItemHeight = 30;
             this.matchupListBox.Location = new System.Drawing.Point(32, 178);
@@ -120,7 +125,7 @@
             // 
             this.teamOneNameLabel.AutoSize = true;
             this.teamOneNameLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamOneNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.teamOneNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.teamOneNameLabel.Location = new System.Drawing.Point(527, 177);
             this.teamOneNameLabel.Name = "teamOneNameLabel";
             this.teamOneNameLabel.Size = new System.Drawing.Size(175, 38);
@@ -131,7 +136,7 @@
             // 
             this.teamOneScoreLabel.AutoSize = true;
             this.teamOneScoreLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamOneScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.teamOneScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.teamOneScoreLabel.Location = new System.Drawing.Point(527, 232);
             this.teamOneScoreLabel.Name = "teamOneScoreLabel";
             this.teamOneScoreLabel.Size = new System.Drawing.Size(75, 38);
@@ -140,6 +145,8 @@
             // 
             // teamOneScoreValue
             // 
+            this.teamOneScoreValue.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.teamOneScoreValue.ForeColor = System.Drawing.Color.DarkGreen;
             this.teamOneScoreValue.Location = new System.Drawing.Point(619, 235);
             this.teamOneScoreValue.Name = "teamOneScoreValue";
             this.teamOneScoreValue.Size = new System.Drawing.Size(100, 35);
@@ -147,6 +154,8 @@
             // 
             // teamTwoScoreValue
             // 
+            this.teamTwoScoreValue.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.teamTwoScoreValue.ForeColor = System.Drawing.Color.DarkGreen;
             this.teamTwoScoreValue.Location = new System.Drawing.Point(619, 390);
             this.teamTwoScoreValue.Name = "teamTwoScoreValue";
             this.teamTwoScoreValue.Size = new System.Drawing.Size(100, 35);
@@ -156,7 +165,7 @@
             // 
             this.teamTwoScoreLabel.AutoSize = true;
             this.teamTwoScoreLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamTwoScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.teamTwoScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.teamTwoScoreLabel.Location = new System.Drawing.Point(527, 387);
             this.teamTwoScoreLabel.Name = "teamTwoScoreLabel";
             this.teamTwoScoreLabel.Size = new System.Drawing.Size(75, 38);
@@ -167,7 +176,7 @@
             // 
             this.teamTwoNameLabel.AutoSize = true;
             this.teamTwoNameLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamTwoNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.teamTwoNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.teamTwoNameLabel.Location = new System.Drawing.Point(527, 332);
             this.teamTwoNameLabel.Name = "teamTwoNameLabel";
             this.teamTwoNameLabel.Size = new System.Drawing.Size(173, 38);
@@ -178,7 +187,7 @@
             // 
             this.versusLabel.AutoSize = true;
             this.versusLabel.Font = new System.Drawing.Font("Segoe UI", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.versusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.versusLabel.Location = new System.Drawing.Point(591, 287);
             this.versusLabel.Name = "versusLabel";
             this.versusLabel.Size = new System.Drawing.Size(71, 38);
@@ -187,19 +196,22 @@
             // 
             // scoreButton
             // 
+            this.scoreButton.BackColor = System.Drawing.Color.WhiteSmoke;
             this.scoreButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.scoreButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.scoreButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.scoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.scoreButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.scoreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.scoreButton.Location = new System.Drawing.Point(735, 287);
             this.scoreButton.Name = "scoreButton";
             this.scoreButton.Size = new System.Drawing.Size(115, 53);
             this.scoreButton.TabIndex = 13;
             this.scoreButton.Text = "Lưu tỉ số";
-            this.scoreButton.UseVisualStyleBackColor = true;
+            this.scoreButton.UseVisualStyleBackColor = false;
             this.scoreButton.Click += new System.EventHandler(this.scoreButton_Click);
+            this.scoreButton.MouseEnter += new System.EventHandler(this.scoreButton_MouseEnter);
+            this.scoreButton.MouseLeave += new System.EventHandler(this.scoreButton_MouseLeave);
             // 
             // errorMessage
             // 
@@ -217,7 +229,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(873, 486);
             this.Controls.Add(this.errorMessage);
             this.Controls.Add(this.scoreButton);
@@ -235,6 +247,7 @@
             this.Controls.Add(this.tournamentName);
             this.Controls.Add(this.headerLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(197)))), ((int)(((byte)(114)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "TournamentViewerForm";

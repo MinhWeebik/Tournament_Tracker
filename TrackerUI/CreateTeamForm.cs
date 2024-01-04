@@ -50,7 +50,7 @@ namespace TrackerUI
                     {
                         searchResultTeamMembers.Add(person);
                     }
-                } 
+                }
             }
             else
             {
@@ -60,7 +60,7 @@ namespace TrackerUI
 
         private void createMemberButton_Click(object sender, EventArgs e)
         {
-            if(ValidatePerson())
+            if (ValidatePerson())
             {
                 PersonModel p = new PersonModel();
                 p.FirstName = firstNameValue.Text;
@@ -98,32 +98,32 @@ namespace TrackerUI
         private bool ValidatePerson()
         {
             emailErrorLabel.Visible = false;
-            firstNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            lastNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            emailLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            cellphoneLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            firstNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            lastNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            emailLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            cellphoneLabel.ForeColor = Color.FromArgb(147, 197, 114);
             bool output = true;
-            if(firstNameValue.Text.Length == 0 )
+            if (firstNameValue.Text.Length == 0)
             {
                 output = false;
                 firstNameLabel.ForeColor = Color.Red;
             }
-            if(lastNameValue.Text.Length == 0 )
-            { 
+            if (lastNameValue.Text.Length == 0)
+            {
                 output = false;
                 lastNameLabel.ForeColor = Color.Red;
             }
-            if(emailValue.Text.Length == 0 )
+            if (emailValue.Text.Length == 0)
             {
                 output = false;
                 emailLabel.ForeColor = Color.Red;
             }
-            if(cellphoneValue.Text.Length == 0 )
+            if (cellphoneValue.Text.Length == 0)
             {
                 output = false;
                 cellphoneLabel.ForeColor = Color.Red;
             }
-            if(!IsValidEmail(emailValue.Text))
+            if (!IsValidEmail(emailValue.Text))
             {
                 output = false;
                 emailErrorLabel.Visible = true;
@@ -134,15 +134,15 @@ namespace TrackerUI
 
         private bool ValidateTeam()
         {
-            teamNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            teamNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
             errorMessageLabel.Visible = false;
             bool output = true;
-            if(teamNameValue.Text.Length == 0 )
+            if (teamNameValue.Text.Length == 0)
             {
                 output = false;
                 teamNameLabel.ForeColor = Color.Red;
             }
-            if(teamMembersListBox.Items.Count == 0 )
+            if (teamMembersListBox.Items.Count == 0)
             {
                 output = false;
                 errorMessageLabel.Visible = true;
@@ -157,14 +157,14 @@ namespace TrackerUI
             {
                 availableTeamMembers.Remove(p);
                 selectedTeamMembers.Add(p);
-                WireUpList(); 
+                WireUpList();
             }
         }
 
         private void deleteSelectedMemberButton_Click(object sender, EventArgs e)
         {
             PersonModel p = (PersonModel)teamMembersListBox.SelectedItem;
-            if(p != null )
+            if (p != null)
             {
                 availableTeamMembers.Add(p);
                 selectedTeamMembers.Remove(p);
@@ -181,13 +181,65 @@ namespace TrackerUI
                 t.TeamMembers = selectedTeamMembers;
                 GlobalConfig.Connection.createTeam(t);
                 callingForm.teamComplete(t);
-                this.Close(); 
+                this.Close();
             }
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             WireUpList();
+        }
+
+        private void addMemberButton_MouseEnter(object sender, EventArgs e)
+        {
+            addMemberButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void addMemberButton_MouseLeave(object sender, EventArgs e)
+        {
+            addMemberButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void createMemberButton_MouseEnter(object sender, EventArgs e)
+        {
+            createMemberButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void createMemberButton_MouseLeave(object sender, EventArgs e)
+        {
+            createMemberButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void deleteSelectedMemberButton_MouseEnter(object sender, EventArgs e)
+        {
+            deleteSelectedMemberButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void deleteSelectedMemberButton_MouseLeave(object sender, EventArgs e)
+        {
+            deleteSelectedMemberButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void createTeamButton_MouseEnter(object sender, EventArgs e)
+        {
+            createTeamButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void createTeamButton_MouseLeave(object sender, EventArgs e)
+        {
+            createTeamButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void selectTeamMemberDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

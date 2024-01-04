@@ -29,7 +29,7 @@ namespace newTrackerLibrary.Models
         {
             get
             {
-                return $"{LastName} {FirstName}";
+                return $"{LastName} {FirstName} - {CellphoneNumber.Substring(CellphoneNumber.Length - 4)}";
             }
         }
     }

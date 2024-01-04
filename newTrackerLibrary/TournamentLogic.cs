@@ -84,8 +84,8 @@ namespace newTrackerLibrary
             }
             else
             {
-                subject = "Bạn được qua vòng này";
-                body.AppendLine("Chúc mừng bạn được qua vòng này");
+                subject = "Bạn được qua vòng loại";
+                body.AppendLine("Bạn được qua vòng loại");
                 body.AppendLine("~Tournament Tracker");
             }
             to = p.EmailAddress;

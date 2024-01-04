@@ -38,10 +38,10 @@ namespace TrackerUI
         //Kiểm tra dữ liệu vào
         private bool ValidateForm()
         {
-            placeNumberLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            placeNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            prizeAmountLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            prizePercentageLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            placeNumberLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            placeNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            prizeAmountLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            prizePercentageLabel.ForeColor = Color.FromArgb(147, 197, 114);
             bool output = true;
             int placeNumber = 0;
             bool placeNumberValidNumber = int.TryParse(placeNumberValue.Text, out placeNumber);
@@ -86,6 +86,18 @@ namespace TrackerUI
                 prizePercentageLabel.ForeColor = Color.Red;
             }
             return output;
+        }
+
+        private void createPrizeButton_MouseEnter(object sender, EventArgs e)
+        {
+            createPrizeButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void createPrizeButton_MouseLeave(object sender, EventArgs e)
+        {
+            createPrizeButton.ForeColor = Color.FromArgb(147, 197, 114);
+
         }
     }
 }

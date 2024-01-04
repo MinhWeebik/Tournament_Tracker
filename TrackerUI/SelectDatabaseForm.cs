@@ -34,14 +34,14 @@ namespace TrackerUI
 
         private void selectButton_Click(object sender, EventArgs e)
         {
-            if (ConfigurationManager.AppSettings["filePath"].Length != 0)
+            if (ConfigurationManager.AppSettings["filePath"].Length != 0 || (DatabaseType)databaseCombobox.SelectedItem == DatabaseType.Sql)
             {
                 GlobalConfig.InitializeConnections((DatabaseType)databaseCombobox.SelectedItem);
                 TournamentDashBoardForm frm = new TournamentDashBoardForm();
                 frm.Show();
                 this.Hide();
             }
-            else
+            else if((DatabaseType)databaseCombobox.SelectedItem == DatabaseType.TextFile)
             {
                 MessageBox.Show("Chưa chọn nơi lưu cơ sở dữ liệu", "Lỗi",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -70,8 +70,32 @@ namespace TrackerUI
             {
                 selectFilePathButton.Enabled = true;
                 filePathText.Enabled = true;
-                filePathLabel.ForeColor = Color.FromArgb(51, 153, 255);
+                filePathLabel.ForeColor = Color.FromArgb(147, 197, 114);
             }
+        }
+
+        private void selectButton_MouseEnter(object sender, EventArgs e)
+        {
+            selectButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void selectButton_MouseLeave(object sender, EventArgs e)
+        {
+            selectButton.ForeColor = Color.FromArgb(147, 197, 114);
+
+        }
+
+        private void selectFilePathButton_MouseEnter(object sender, EventArgs e)
+        {
+            selectFilePathButton.ForeColor = Color.DarkGreen;
+
+        }
+
+        private void selectFilePathButton_MouseLeave(object sender, EventArgs e)
+        {
+            selectFilePathButton.ForeColor = Color.FromArgb(147, 197, 114);
+
         }
     }
 }

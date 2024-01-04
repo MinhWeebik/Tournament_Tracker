@@ -180,8 +180,8 @@ namespace TrackerUI
         {
             noTeamsErrorLabel.Visible  = false;
             prizeErrorLabel.Visible = false;
-            tournamentNameLabel.ForeColor = Color.FromArgb(51, 153, 255);
-            entryFeeLabel.ForeColor = Color.FromArgb(51, 153, 255);
+            tournamentNameLabel.ForeColor = Color.FromArgb(147, 197, 114);
+            entryFeeLabel.ForeColor = Color.FromArgb(147, 197, 114);
             bool output = true;
             if(tournamentNameValue.Text.Length == 0)
             {
@@ -253,6 +253,71 @@ namespace TrackerUI
         private void searchValue_TextChanged(object sender, EventArgs e)
         {
             ReWireUp();
+        }
+
+        private void addTeamButton_MouseEnter(object sender, EventArgs e)
+        {
+            addTeamButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void addTeamButton_MouseLeave(object sender, EventArgs e)
+        {
+            addTeamButton.ForeColor = Color.FromArgb(147, 197, 114);
+        }
+
+        private void createPrizeButton_MouseEnter(object sender, EventArgs e)
+        {
+            createPrizeButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void createPrizeButton_MouseLeave(object sender, EventArgs e)
+        {
+            createPrizeButton.ForeColor = Color.FromArgb(147, 197, 114);
+        }
+
+        private void editTeamButton_MouseEnter(object sender, EventArgs e)
+        {
+            editTeamButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void editTeamButton_MouseLeave(object sender, EventArgs e)
+        {
+            editTeamButton.ForeColor = Color.FromArgb(147, 197, 114);
+        }
+
+        private void deleteSelectedPrizesButton_MouseEnter(object sender, EventArgs e)
+        {
+            deleteSelectedPrizesButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void deleteSelectedPrizesButton_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void deleteSelectedPrizesButton_MouseLeave(object sender, EventArgs e)
+        {
+            deleteSelectedPrizesButton.ForeColor = Color.FromArgb(147, 197, 114);
+        }
+
+        private void deleteSelectedTeamButton_MouseEnter(object sender, EventArgs e)
+        {
+            deleteSelectedTeamButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void deleteSelectedTeamButton_MouseLeave(object sender, EventArgs e)
+        {
+            deleteSelectedTeamButton.ForeColor = Color.FromArgb(147, 197, 114);
+        }
+
+        private void createTournamentButton_MouseEnter(object sender, EventArgs e)
+        {
+            createTournamentButton.ForeColor = Color.DarkGreen;
+        }
+
+        private void createTournamentButton_MouseLeave(object sender, EventArgs e)
+        {
+            createTournamentButton.ForeColor = Color.FromArgb(147, 197, 114);
         }
     }
 }
